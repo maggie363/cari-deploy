@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cari — Series A Investor Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF9F5;
+  --green: #4A7C59;
+  --gold: #D4A843;
+  --dark: #1C1C1C;
+  --olive: #808B43;
+  --lime: #C6D478;
+  --blue: #7DACE5;
+  --orange: #E85F16;
+  --forest: #22411C;
+  --buyer: #7F7F7F;
+  --vendor-gold: #D4A843;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-snap-type:y mandatory; }
+@media(max-width:768px) { html { scroll-snap-type:y proximity; } }
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:#333; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+section.slide {
+  min-height:100vh; width:100%;
+  scroll-snap-align:start;
+  display:flex; align-items:center; justify-content:center; padding-bottom:16vh;
+  position:relative; overflow:hidden;
+  padding:5vh 5vw 3vw;
+}
+.slide-inner { width:100%; max-width:1400px; position:relative; }
+.anim { opacity:0; transform:translateY(30px); }
+.slide-title { font-size:clamp(28px,3.5vw,64px); font-weight:700; line-height:1.1; margin-bottom:16px; }
+.slide-subtitle { font-size:clamp(14px,1.2vw,20px); line-height:1.6; color:#555; max-width:900px; }
+@media(max-width:768px) { .slide-subtitle { max-width:100%; } .s8-modules span { font-size:14px !important; } .s8-modules { gap:6px !important; } .s8-modules strong { font-size:13px; } #s8 .slide-title { font-size:24px !important; } #s8 .grid-2 { gap:12px !important; } #s8 { min-height:auto; padding-bottom:8vh !important; } #s2b { min-height:auto; padding-bottom:4vh !important; } }
+@media(min-width:769px) { .s8-modules { padding-right:60px; } }
+.green-line { width:120px; height:4px; background:var(--green); margin:12px 0 24px; border-radius:2px; }
+.gold-line { width:120px; height:4px; background:var(--gold); margin:12px 0 24px; border-radius:2px; }
+.card { background:#fff; border-radius:16px; padding:24px; box-shadow:0 2px 20px rgba(0,0,0,0.04); }
+.card h4 { font-size:clamp(13px,1vw,17px); font-weight:700; margin-bottom:8px; }
+.card p, .card li { font-size:clamp(12px,0.85vw,15px); line-height:1.6; color:#555; }
+.card ul { padding-left:16px; } .card li { margin-bottom:4px; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+.slide-img { width:100%; height:auto; border-radius:12px; object-fit:contain; }
+.nav-dots { position:fixed; right:16px; top:50%; transform:translateY(-50%); z-index:999; display:flex; flex-direction:column; gap:6px; }
+.nav-dot { width:8px; height:8px; border-radius:50%; background:rgba(0,0,0,0.12); cursor:pointer; transition:all 0.3s; border:none; padding:0; }
+.nav-dot.active { background:var(--green); transform:scale(1.5); }
+.nav-dot:hover { background:var(--green); transform:scale(1.3); }
+.watermark { position:absolute; bottom:12px; right:12px; height:20px; opacity:0.3; z-index:0; }
+.circle { border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:12px; }
+.card-label { display:inline-block; padding:6px 16px; border-radius:8px; font-size:clamp(11px,0.9vw,15px); font-weight:700; color:#fff; margin-bottom:16px; }
+@keyframes bob { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-15px) rotate(2deg)} }
+.bob { animation:bob 3s ease-in-out infinite; }
+
+/* Hub-and-spoke diagram */
+.hub-spoke { position:relative; width:100%; max-width:500px; aspect-ratio:1; margin:0 auto; }
+.hub { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; z-index:2; padding:16px; color:#fff; font-weight:700; }
+.spoke { position:absolute; font-size:clamp(9px,0.7vw,12px); line-height:1.35; width:clamp(90px,9vw,130px); text-align:center; z-index:3; }
+.spoke-num { display:inline-block; width:18px; height:18px; border-radius:50%; background:rgba(0,0,0,0.15); color:#fff; font-size:9px; line-height:18px; text-align:center; margin-bottom:3px; }
+
+/* Flywheel for slide 4 */
+.flywheel-wrap { position:relative; width:100%; max-width:540px; margin:0 auto; }
+.flywheel-svg { width:100%; height:auto; display:block; filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12)); }
+.flywheel-svg text { font-family:'DM Sans',sans-serif; }
+.flywheel-arrows { transform-origin:250px 250px; }
+@keyframes hub-pulse { 0%,100%{filter:drop-shadow(0 0 12px rgba(74,124,89,0.2));} 50%{filter:drop-shadow(0 0 24px rgba(74,124,89,0.35));} }
+.flywheel-hub { animation:hub-pulse 4s ease-in-out infinite; }
+
+/* Stacked rings for slide 6 */
+.stacked-rings { display:flex; flex-direction:column; align-items:center; gap:0; position:relative; }
+.ring-layer { width:100%; max-width:350px; padding:20px; text-align:center; border-radius:50%/40%; display:flex; align-items:center; justify-content:center; flex-direction:column; position:relative; }
+
+/* Scroll indicator */
+@keyframes heroFadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-anim { opacity:0; animation:heroFadeIn 0.6s ease-out forwards; }
+.hero-anim:nth-child(1) { animation-delay:0.2s; }
+.hero-anim:nth-child(2) { animation-delay:0.35s; }
+.hero-anim:nth-child(3) { animation-delay:0.5s; }
+.hero-anim:nth-child(4) { animation-delay:0.65s; }
+.hero-anim:nth-child(5) { animation-delay:0.8s; }
+.hero-anim:nth-child(6) { animation-delay:0.95s; }
+.hero-anim:nth-child(7) { animation-delay:1.1s; }
+.hero-anim:nth-child(8) { animation-delay:1.25s; }
+.hero-anim:nth-child(9) { animation-delay:1.4s; }
+@keyframes scrollDown { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+@keyframes dashFlow { to { stroke-dashoffset: -26; } }
+.scroll-indicator { animation:scrollDown 2s ease-in-out infinite; }
+.s2-widgets img { border-radius:12px; }
+.s13-br { display:none; }
+@media(max-width:900px) { .s13-br { display:inline; } }
+
+/* Slide 3: scale diagrams on large viewports */
+@media(min-width:1400px) { #s3 .s3-diagram { transform:scale(1.15); transform-origin:center center; } }
+@media(min-width:1800px) { #s3 .s3-diagram { transform:scale(1.35); transform-origin:center center; } }
+@media(min-width:2200px) { #s3 .s3-diagram { transform:scale(1.55); transform-origin:center center; } }
+
+/* Slide 3 orbit animation */
+@keyframes s3-orbit-slow {
+  from { transform:rotate(var(--s3-angle,0deg)) translateY(-160px) rotate(calc(-1 * var(--s3-angle,0deg))) translate(-50%,-50%); }
+  to { transform:rotate(calc(var(--s3-angle,0deg) + 360deg)) translateY(-160px) rotate(calc(-1 * (var(--s3-angle,0deg) + 360deg))) translate(-50%,-50%); }
+}
+
+/* Slide 4: Intelligence Layer orbit */
+.orbit-ring { position:relative; width:100%; max-width:500px; aspect-ratio:1; margin:0 auto; overflow:visible; }
+.orbit-track { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:440px; height:440px; border-radius:50%; border:1.5px dashed rgba(74,124,89,0.15); }
+.orbit-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:240px; height:240px; border-radius:50%; background:linear-gradient(145deg, #e8e8e8 0%, #c0c0c0 25%, #a8a8a8 50%, #d4d4d4 75%, #b0b0b0 100%); display:flex; align-items:center; justify-content:center; z-index:2; box-shadow:0 12px 40px rgba(0,0,0,0.2), 0 0 0 6px rgba(180,180,180,0.15), inset 0 2px 8px rgba(255,255,255,0.4), inset 0 -4px 12px rgba(0,0,0,0.15); animation:pulse-glow 4s ease-in-out infinite; }
+.orbit-center img { width:140px; }
+.orbit-item { position:absolute; top:50%; left:50%; animation:orbit-around 30s linear infinite; z-index:3; }
+.orbit-label { padding:12px 18px; border-radius:14px; font-size:13px; font-weight:600; text-align:center; white-space:nowrap; background:rgba(239,237,227,0.95); backdrop-filter:blur(6px); transform:translate(-50%,-50%); box-shadow:0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04); border:1px solid rgba(255,255,255,0.6); }
+.orbit-label small { display:block; font-weight:400; color:#777; font-size:11px; margin-top:2px; }
+@keyframes orbit-around {
+  from { transform:rotate(var(--angle,0deg)) translateX(220px) rotate(calc(-1 * var(--angle,0deg))); }
+  to { transform:rotate(calc(var(--angle,0deg) + 360deg)) translateX(220px) rotate(calc(-1 * (var(--angle,0deg) + 360deg))); }
+}
+@keyframes pulse-glow { 0%,100%{box-shadow:0 12px 40px rgba(0,0,0,0.2), 0 0 0 6px rgba(180,180,180,0.15), inset 0 2px 8px rgba(255,255,255,0.4), inset 0 -4px 12px rgba(0,0,0,0.15);} 50%{box-shadow:0 16px 50px rgba(0,0,0,0.25), 0 0 0 10px rgba(180,180,180,0.1), inset 0 2px 8px rgba(255,255,255,0.4), inset 0 -4px 12px rgba(0,0,0,0.15);} }
+
+@media(max-width:768px) {
+  .grid-2,.grid-3 { grid-template-columns:1fr; }
+  section.slide { padding:5vw; }
+  .nav-dots { right:6px; } .nav-dot { width:5px; height:5px; }
+  .hub-spoke { transform:scale(0.85); transform-origin:center center; margin:-20px auto !important; }
+  .spoke { font-size:10px; width:90px; }
+  .hub { width:95px !important; height:95px !important; font-size:11px !important; }
+  .s3-orbit { transform:scale(0.7); transform-origin:center center; margin:-30px auto !important; }
+  #s3 .hub-spoke { transform:scale(0.85); transform-origin:center center; margin:10px auto !important; }
+  #s3 .s3-diagram, #s3b .s3-diagram { transform:scale(0.8); transform-origin:center center; margin:30px auto 10px !important; }
+  #s3 .s3-problem { padding-bottom:60px !important; }
+  #s3 .s3-solution { padding-top:20px !important; }
+  #s3 .s3-context-solution { margin-bottom:40px !important; }
+  .s3-problem, .s3-solution { display:flex; flex-direction:column; }
+  .s3-problem .hub-spoke, .s3-solution .hub-spoke { order:-1; }
+  .s3-context-problem, .s3-context-solution { margin-top:10px !important; margin-bottom:0 !important; }
+  .s6-grid { grid-template-columns:1fr !important; }
+  .s6-grid > div:first-child { order:0; width:80%; max-width:320px; margin:0 auto; }
+  .s6-grid > div:last-child { order:1; width:100%; }
+  .orbit-ring { transform:scale(0.45); transform-origin:center center; margin:-70px auto !important; }
+  #s4 .grid-2 > div:first-child { min-height:auto !important; }
+  /* s2: stack 3-col and 2-col inline grids */
+  .s2-cols { grid-template-columns:1fr !important; gap:16px !important; }
+  .mobile-stack { grid-template-columns:1fr !important; }
+  .s2-widgets { grid-template-columns:1fr 1fr !important; gap:8px !important; }
+  /* s5: shrink market circles */
+  #s5 .circle { transform:scale(0.75); }
+  #s5 .grid-2 > div:last-child { align-items:center; gap:4px !important; }
+  #s5 .grid-2 > div:last-child > div { gap:8px !important; }
+  /* s10: shrink flywheel */
+  .s10-flywheel { width:300px !important; height:380px !important; margin:0 auto !important; }
+  /* s12: scale down for mobile */
+  #s12 .card { padding:16px 16px 40px !important; overflow:hidden; }
+  #s12 [data-anim-group="s12-logo"] { height:55px !important; }
+  #s12 [data-anim-group="s12-logo"] img { max-height:55px !important; max-width:130px !important; }
+  #s12 .card p { margin-bottom:0 !important; }
+  #s12 .card div[style*="margin-top"] { margin-top:4px !important; }
+  #s12 .card div[style*="gap:16px"] { gap:6px !important; }
+  #s12 .card div[style*="gap:48px"] { gap:10px !important; }
+  #s12 .card div[style*="space-between"] { justify-content:space-evenly !important; padding:0 16px !important; }
+  #s12 .grid-2 > .card:first-child [data-anim-group="s12-logo"] img { max-height:65px !important; max-width:150px !important; }
+  #s12 .grid-2 > .card:first-child div[style*="margin-top"] { margin-top:0px !important; }
+  #s12 .grid-2 > .card:nth-child(2) [data-anim-group="s12-logo"] img { max-height:40px !important; max-width:110px !important; }
+  /* s21: labels left, circles centered and aligned */
+  #s21 .grid-2 > div:first-child { align-items:stretch !important; gap:8px !important; }
+  #s21 .grid-2 > div:first-child > div { display:grid !important; grid-template-columns:90px 2px 1fr !important; gap:10px !important; align-items:center; justify-items:start; }
+  #s21 .grid-2 > div:first-child > div > div:first-child { text-align:left !important; width:auto !important; font-size:11px !important; }
+  #s21 .circle { transform:scale(0.5); margin:-25px; justify-self:center !important; transform-origin:center center; }
+  /* s8: show only one chef bubble on mobile */
+  .chef-bubble { padding:4px 6px !important; border-radius:6px !important; }
+  .chef-bubble p, .chef-bubble strong { font-size:7px !important; }
+  .chef-bubble > div:first-child { width:14px !important; height:14px !important; }
+  .chef-bubble > div:first-child svg { width:12px !important; height:12px !important; }
+  [data-anim-group="s8-chef-2"], [data-anim-group="s8-chef-3"] { display:none !important; }
+  /* s11: case study - image first, stack text */
+  .s11-grid { grid-template-columns:1fr !important; }
+  .s11-grid > div:first-child { max-height:200px !important; }
+  /* s22: reposition card on mobile */
+  .s22-card { position:static !important; transform:none !important; text-align:center; margin-top:20px; }
+  .s22-card img { width:140px !important; }
+  #s22 .slide-inner { flex-direction:column !important; }
+  /* s1: hero layout fixes */
+  .s1-topbar { flex-wrap:nowrap; gap:8px; }
+  .s1-tagline { font-size:9px !important; text-align:right; }
+  .s1-main { flex-direction:column !important; gap:20px !important; margin-top:6vh !important; }
+  .s1-laptop { min-width:unset !important; width:90% !important; max-width:320px; margin:0 auto; opacity:1 !important; }
+  .s1-laptop img { width:100% !important; margin-left:0 !important; }
+  #s1 .slide-inner > div:last-child { padding-bottom:12vh !important; }
+  /* Global: prevent horizontal overflow */
+  section.slide { overflow-x:hidden; }
+  /* s5: stack bubbles vertically on mobile */
+  #s5 .slide-inner > div[style*="display:flex"][style*="align-items:flex-end"] { flex-direction:column !important; align-items:center !important; gap:16px !important; padding:0 !important; }
+  #s5 .circle { max-width:200px !important; max-height:200px !important; }
+  /* s10: shrink flywheel more on mobile */
+  .s10-flywheel { width:280px !important; height:360px !important; }
+  /* s20: no special mobile rules needed - single image scales naturally */
+}
+</style>
+<link rel="stylesheet" href="chat.css?v=5">
+</head>
+<body>
+<nav class="nav-dots" id="nav"></nav>
+
+<!-- HERO -->
+<section class="slide" id="s1" style="background:var(--cream);overflow:hidden;padding:0;">
+  <div class="slide-inner" style="position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:3vw 5vw;">
+    <!-- Top bar: logo left, tagline right -->
+    <div class="s1-topbar" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="hero-anim" style="">
+        <img src="assets/image3.png" style="height:36px;" alt="Cari">
+      </div>
+      <div class="hero-anim s1-tagline" style="color:rgba(0,0,0,0.45);font-size:clamp(11px,0.85vw,14px);font-weight:500;letter-spacing:0.5px;">Empowering the People Behind the Plate.</div>
+    </div>
+    <!-- Main content: headline left, laptop screenshots right -->
+    <div class="s1-main" style="display:flex;align-items:center;gap:5vw;flex:1;margin-top:4vh;">
+      <div style="flex:1;min-width:280px;">
+        <div class="hero-anim" style="color:var(--gold);font-size:clamp(12px,0.9vw,15px);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Our Vision</div>
+        <h1 class="hero-anim" style="font-size:clamp(34px,4.2vw,68px);font-weight:700;color:var(--dark);line-height:1.05;margin-bottom:24px;">To redesign the<br>financial relationships<br>that power the<br>real economy.</h1>
+        <div class="hero-anim" style="width:80px;height:3px;background:var(--green);border-radius:2px;margin-bottom:20px;"></div>
+        <p class="hero-anim" style="color:rgba(0,0,0,0.5);font-size:clamp(13px,1vw,17px);line-height:1.6;max-width:420px;">One platform to pay, earn and grow your network.</p>
+        <p class="hero-anim" style="color:rgba(0,0,0,0.3);font-size:clamp(11px,0.8vw,14px);margin-top:16px;letter-spacing:1px;text-transform:uppercase;">Series A Investor Presentation</p>
+      </div>
+      <div class="hero-anim s1-laptop" style="flex:1;min-width:320px;position:relative;opacity:0;">
+        <!-- Overlapping laptop/monitor product screenshots -->
+        <img src="assets/hero-laptop.png" style="width:110%;position:relative;z-index:2;display:block;margin-left:8%;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.15));" alt="Cari Dashboard">
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="hero-anim" style="text-align:center;color:rgba(0,0,0,0.3);opacity:0;padding-bottom:2vh;">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="animation:scrollDown 2s ease-in-out infinite;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <div style="font-size:12px;margin-top:4px;letter-spacing:1px;text-transform:uppercase;">Scroll to explore</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2: Problem / Solution / Context -->
+<section class="slide" id="s2" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">The Problem &amp; Solution</div>
+    <div class="green-line anim"></div>
+    <div class="s2-cols" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-bottom:32px;">
+      <!-- Column 1: The Problem -->
+      <div class="anim" data-anim-group="s2-col" style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.04);">
+        <div class="card-label" style="background:#F1D160;color:#333;">The Problem</div>
+        <h4 style="font-size:clamp(13px,1vw,17px);font-weight:700;margin-bottom:8px;">For Restaurants</h4>
+        <ul style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;padding-left:16px;margin-bottom:16px;">
+          <li>Razor-thin margins, zero visibility into payment flows</li>
+          <li>Interchange fees on every swipe eroding already slim profits</li>
+          <li>No rewards, no leverage, no loyalty infrastructure</li>
+        </ul>
+        <h4 style="font-size:clamp(13px,1vw,17px);font-weight:700;margin-bottom:8px;">For Vendors</h4>
+        <ul style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;padding-left:16px;">
+          <li>Floating net-30/60 terms as unwilling bankers</li>
+          <li>Chasing payments across hundreds of accounts</li>
+          <li>No tools to incentivize faster payment</li>
+        </ul>
+      </div>
+      <!-- Column 2: The Solution -->
+      <div class="anim" data-anim-group="s2-col" style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.04);">
+        <div class="card-label" style="background:var(--olive);">The Solution</div>
+        <h4 style="font-size:clamp(13px,1vw,17px);font-weight:700;margin-bottom:8px;">For Restaurants</h4>
+        <ul style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;padding-left:16px;margin-bottom:16px;">
+          <li>Earn rewards on every dollar of operational spend</li>
+          <li>One platform to manage and track all vendor payments</li>
+          <li>Transparent pricing with no hidden fees</li>
+        </ul>
+        <h4 style="font-size:clamp(13px,1vw,17px);font-weight:700;margin-bottom:8px;">For Vendors</h4>
+        <ul style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;padding-left:16px;">
+          <li>Get paid faster through built-in payment incentives</li>
+          <li>Cut collections overhead across the entire AR cycle</li>
+          <li>Unlock loyalty data to grow wallet share</li>
+        </ul>
+      </div>
+      <!-- Column 3: The Context -->
+      <div class="anim" data-anim-group="s2-col" style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.04);">
+        <div class="card-label" style="background:var(--blue);">The Expertise</div>
+        <p style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;margin-bottom:12px;">We come from deep inside the Industry — from finance to operating some of the most recognized restaurant brands in the country.</p>
+        <p style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;margin-bottom:12px;">We've seen first hand how operators juggling multiple credit cards with millions in unredeemed points they didn't know existed.</p>
+        <p style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;margin-bottom:12px;">This spend never goes away, and the payment infrastructure hasn't changed in decades.</p>
+        <p style="font-size:clamp(11px,0.8vw,14px);line-height:1.6;color:#555;">We built Cari because we understand exactly where and why it's broken.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2b: Supplier & Operator Widgets -->
+<section class="slide" id="s2b" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim">
+      <h4 style="font-size:clamp(15px,1.2vw,20px);font-weight:600;color:var(--dark);margin-bottom:16px;letter-spacing:0.5px;">For Suppliers</h4>
+      <div class="s2-widgets" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <img src="assets/suppliers-carousel-1.jpg" alt="Supplier Widget 1" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+        <img src="assets/suppliers-carousel-2.jpg" alt="Supplier Widget 2" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+        <img src="assets/suppliers-carousel-3.jpg" alt="Supplier Widget 3" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+        <img src="assets/suppliers-carousel-4.jpg" alt="Supplier Widget 4" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+      </div>
+    </div>
+    <div class="anim" style="margin-top:32px;">
+      <h4 style="font-size:clamp(15px,1.2vw,20px);font-weight:600;color:var(--dark);margin-bottom:16px;letter-spacing:0.5px;">For Operators</h4>
+      <div class="s2-widgets" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <img src="assets/operators-carousel-1.jpg" alt="Operator Widget 1" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+        <img src="assets/operators-carousel-2.jpg" alt="Operator Widget 2" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+        <img src="assets/operators-carousel-3.jpg" alt="Operator Widget 3" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+        <img src="assets/operators-carousel-4.jpg" alt="Operator Widget 4" style="width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: Re-designing Financial Relationships -->
+<section class="slide" id="s3" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">Re-designing Financial Relationships</div>
+    <div class="green-line anim"></div>
+    <div class="s3-grid grid-2" style="gap:24px;">
+      <!-- Left: Current Disconnect -->
+      <div class="s3-problem">
+        <p class="anim slide-subtitle s3-context-problem" style="margin-bottom:16px;">Buyers are not incentivized to be loyal customers or pay invoices in a timely manner, while vendors face uncertain collections and the burden of float.</p>
+        <div class="anim s3-diagram" style="position:relative;width:100%;max-width:90%;aspect-ratio:1;margin:0 auto;">
+          <div class="s3-hub" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;background:#8a8a8a;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;z-index:2;color:#fff;font-weight:700;font-size:clamp(11px,0.9vw,14px);box-shadow:0 6px 20px rgba(0,0,0,0.15);">Current<br>Disconnect</div>
+          <!-- 6 spokes at 60° intervals using transform rotate+translate -->
+          <div class="spoke anim" data-anim-group="s3-spoke-l" style="position:absolute;top:50%;left:50%;transform:rotate(0deg) translateY(-190px) rotate(0deg) translate(-50%,-50%);"><span class="spoke-num">1</span><br><span style="color:var(--vendor-gold);font-weight:700;">Vendors</span> deliver goods</div>
+          <div class="spoke anim" data-anim-group="s3-spoke-l" style="position:absolute;top:50%;left:50%;transform:rotate(60deg) translateY(-190px) rotate(-60deg) translate(-50%,-50%);"><span class="spoke-num">2</span><br><span style="color:var(--buyer);font-weight:700;">Buyers</span> delay payments</div>
+          <div class="spoke anim" data-anim-group="s3-spoke-l" style="position:absolute;top:50%;left:50%;transform:rotate(120deg) translateY(-190px) rotate(-120deg) translate(-50%,-50%);"><span class="spoke-num">3</span><br><span style="color:var(--vendor-gold);font-weight:700;">Vendors</span> become credit line</div>
+          <div class="spoke anim" data-anim-group="s3-spoke-l" style="position:absolute;top:50%;left:50%;transform:rotate(180deg) translateY(-190px) rotate(-180deg) translate(-50%,-50%);"><span class="spoke-num">4</span><br><span style="color:var(--vendor-gold);font-weight:700;">Vendors</span> hound for payment</div>
+          <div class="spoke anim" data-anim-group="s3-spoke-l" style="position:absolute;top:50%;left:50%;transform:rotate(240deg) translateY(-190px) rotate(-240deg) translate(-50%,-50%);"><span class="spoke-num">5</span><br><span style="color:var(--buyer);font-weight:700;">Buyers</span> seek new vendors</div>
+          <div class="spoke anim" data-anim-group="s3-spoke-l" style="position:absolute;top:50%;left:50%;transform:rotate(300deg) translateY(-190px) rotate(-300deg) translate(-50%,-50%);"><span class="spoke-num">6</span><br>Eroded trust</div>
+        </div>
+      </div>
+      <!-- Right: The Cari Effect -->
+      <div class="s3-solution">
+        <p class="anim slide-subtitle s3-context-solution" style="margin-bottom:16px;">Cari creates a virtuous cycle that rewards both vendors and buyers for behavior that strengthens the entire system.</p>
+        <div class="s3-diagram" style="position:relative;width:100%;max-width:90%;aspect-ratio:1;margin:0 auto;overflow:visible;">
+          <!-- Dashed orbit track -->
+          <div class="anim" data-anim-group="s3-track" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:340px;border-radius:50%;border:1.5px dashed rgba(74,124,89,0.12);"></div>
+          <!-- Center hub — dramatic entrance -->
+          <div class="anim s3-hub-r" data-anim-group="s3-cari-hub" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;background:linear-gradient(145deg, #e8e8e8 0%, #c0c0c0 25%, #a8a8a8 50%, #d4d4d4 75%, #b0b0b0 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;z-index:2;color:#333;font-weight:700;font-size:clamp(11px,0.9vw,14px);box-shadow:0 6px 20px rgba(0,0,0,0.15);gap:2px;line-height:1.3;">The<br>Cari<br>Effect</div>
+          <!-- 6 spokes — orbit after appearing -->
+          <div class="spoke anim s3-orbiter" data-anim-group="s3-spoke-r" style="position:absolute;top:50%;left:50%;--s3-angle:0deg;z-index:3;animation:s3-orbit-slow 60s linear infinite;animation-play-state:paused;"><span class="spoke-num">1</span><br><span style="color:var(--vendor-gold);font-weight:700;">Vendors</span> deliver goods</div>
+          <div class="spoke anim s3-orbiter" data-anim-group="s3-spoke-r" style="position:absolute;top:50%;left:50%;--s3-angle:60deg;z-index:3;animation:s3-orbit-slow 60s linear infinite;animation-play-state:paused;"><span class="spoke-num">2</span><br><span style="color:var(--buyer);font-weight:700;">Buyers</span> pay on time with <span style="color:var(--green);font-weight:700;">Cari</span></div>
+          <div class="spoke anim s3-orbiter" data-anim-group="s3-spoke-r" style="position:absolute;top:50%;left:50%;--s3-angle:120deg;z-index:3;animation:s3-orbit-slow 60s linear infinite;animation-play-state:paused;"><span class="spoke-num">3</span><br><span style="color:var(--buyer);font-weight:700;">Buyers</span> choose <span style="color:var(--green);font-weight:700;">Cari Network</span></div>
+          <div class="spoke anim s3-orbiter" data-anim-group="s3-spoke-r" style="position:absolute;top:50%;left:50%;--s3-angle:180deg;z-index:3;animation:s3-orbit-slow 60s linear infinite;animation-play-state:paused;"><span class="spoke-num">4</span><br><span style="color:var(--vendor-gold);font-weight:700;">Vendor</span> cash flow improves</div>
+          <div class="spoke anim s3-orbiter" data-anim-group="s3-spoke-r" style="position:absolute;top:50%;left:50%;--s3-angle:240deg;z-index:3;animation:s3-orbit-slow 60s linear infinite;animation-play-state:paused;"><span class="spoke-num">5</span><br><span style="color:var(--vendor-gold);font-weight:700;">Vendors</span> give <span style="color:var(--green);font-weight:700;">Rewards</span></div>
+          <div class="spoke anim s3-orbiter" data-anim-group="s3-spoke-r" style="position:absolute;top:50%;left:50%;--s3-angle:300deg;z-index:3;animation:s3-orbit-slow 60s linear infinite;animation-play-state:paused;"><span class="spoke-num">6</span><br><span style="color:var(--buyer);font-weight:700;">Buyers</span> loyal via <span style="color:var(--green);font-weight:700;">rewards</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: Building the Intelligence Layer -->
+<section class="slide" id="s4" style="background:var(--cream);">
+  <div class="slide-inner">
+    <div class="anim slide-title">Building the Intelligence Layer</div>
+    <div class="anim slide-subtitle">Every payment captures behavioral data. Every data point builds our competitive moat.</div>
+    <div class="green-line anim"></div>
+    <div class="grid-2">
+      <div class="anim" style="display:flex;align-items:center;justify-content:center;min-height:480px;">
+        <div class="orbit-ring">
+          <div class="orbit-track"></div>
+          <div class="orbit-center"><img src="assets/image3.png" alt="Cari"></div>
+          <!-- 5 items at 72° intervals, orbiting -->
+          <div class="orbit-item" style="--angle:0deg;--delay:0s;"><div class="orbit-label">Payments<small>ACH, Card, Stablecoin</small></div></div>
+          <div class="orbit-item" style="--angle:72deg;--delay:0s;"><div class="orbit-label">Data<small>SKU, Timing, Price</small></div></div>
+          <div class="orbit-item" style="--angle:144deg;--delay:0s;"><div class="orbit-label">Insights<small>Predictive Analytics</small></div></div>
+          <div class="orbit-item" style="--angle:216deg;--delay:0s;"><div class="orbit-label">Incentives<small>Dynamic Offers</small></div></div>
+          <div class="orbit-item" style="--angle:288deg;--delay:0s;"><div class="orbit-label">More Volume<small>Network Growth</small></div></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="anim" style="font-size:clamp(18px,1.5vw,26px);margin-bottom:20px;color:var(--green);">What the Data Unlocks:</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="card anim" data-anim-group="s4-unlock" style="padding:14px 20px;display:flex;align-items:center;gap:14px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;"></div><div><strong>Churn Prediction</strong><br><small style="color:#777;">Identify at-risk accounts before they leave</small></div></div>
+          <div class="card anim" data-anim-group="s4-unlock" style="padding:14px 20px;display:flex;align-items:center;gap:14px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;"></div><div><strong>Incentive Optimization</strong><br><small style="color:#777;">Right offer to the right restaurant at the right time</small></div></div>
+          <div class="card anim" data-anim-group="s4-unlock" style="padding:14px 20px;display:flex;align-items:center;gap:14px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;"></div><div><strong>Price Sensitivity</strong><br><small style="color:#777;">Per-restaurant elasticity modeling</small></div></div>
+          <div class="card anim" data-anim-group="s4-unlock" style="padding:14px 20px;display:flex;align-items:center;gap:14px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;"></div><div><strong>Vendor ROI</strong><br><small style="color:#777;">Measure real campaign impact</small></div></div>
+          <div class="card anim" data-anim-group="s4-unlock" style="padding:14px 20px;display:flex;align-items:center;gap:14px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;"></div><div><strong>SKU Benchmarking</strong><br><small style="color:#777;">Performance by product and category</small></div></div>
+          <div class="card anim" data-anim-group="s4-unlock" style="padding:14px 20px;display:flex;align-items:center;gap:14px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;"></div><div><strong>Network Engine</strong><br><small style="color:#777;">Smart cross-network recommendations</small></div></div>
+        </div>
+      </div>
+    </div>
+    <p class="anim slide-subtitle" style="margin-top:40px;text-align:center;width:100%;max-width:100%;margin-left:auto;margin-right:auto;">Every transaction makes our data smarter. Every insight makes the next transaction stronger.</p>
+  </div>
+</section>
+
+<!-- SLIDE 5: The $2.0T Addressable Market -->
+<section class="slide" id="s5" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">The Market Opportunity</div>
+    <div class="green-line anim"></div>
+    <div class="anim slide-subtitle" style="margin-bottom:32px;">Capturing the hospitality industry's financial infrastructure through unified payment rails and intelligent rewards.</div>
+    <!-- Bubbles: left to right, smallest to biggest -->
+    <div style="display:flex;align-items:flex-end;justify-content:center;gap:clamp(16px,3vw,48px);margin-bottom:40px;padding:0 20px;">
+      <div class="anim" style="text-align:center;">
+        <div class="circle" style="width:clamp(140px,14vw,200px);height:clamp(140px,14vw,200px);background:#EFF1E4;color:#333;margin:0 auto;">
+          <strong style="font-size:clamp(20px,2vw,32px);">$5.1B</strong>
+          <small style="font-size:clamp(9px,0.7vw,12px);">Near-Term Capture</small>
+          <small style="font-size:clamp(9px,0.7vw,11px);">~$100M Revenue</small>
+        </div>
+        <div style="margin-top:12px;font-size:clamp(11px,0.85vw,14px);color:#555;font-weight:600;">SOM</div>
+      </div>
+      <div class="anim" style="text-align:center;">
+        <div class="circle" style="width:clamp(200px,20vw,300px);height:clamp(200px,20vw,300px);background:var(--lime);color:#333;margin:0 auto;">
+          <strong style="font-size:clamp(26px,2.5vw,42px);">$560B</strong>
+          <small style="font-size:clamp(10px,0.8vw,13px);">Hospitality B2B Payments</small>
+          <small style="font-size:clamp(9px,0.7vw,12px);">~$11B Revenue Opportunity</small>
+        </div>
+        <div style="margin-top:12px;font-size:clamp(11px,0.85vw,14px);color:#555;font-weight:600;">SAM</div>
+      </div>
+      <div class="anim" style="text-align:center;">
+        <div class="circle" style="width:clamp(260px,26vw,400px);height:clamp(260px,26vw,400px);background:#4C5C20;color:#fff;margin:0 auto;">
+          <strong style="font-size:clamp(32px,3.2vw,54px);">~$2.0T</strong>
+          <small style="font-size:clamp(11px,0.85vw,14px);">US Food &amp; Hospitality Spend</small>
+          <small style="font-size:clamp(10px,0.75vw,13px);opacity:0.8;">~$39B Revenue Opportunity</small>
+        </div>
+        <div style="margin-top:12px;font-size:clamp(11px,0.85vw,14px);color:#555;font-weight:600;">TAM</div>
+      </div>
+    </div>
+    <!-- Text content below bubbles -->
+    <div class="grid-2" style="margin-top:8px;">
+      <div class="card anim"><h4>Penetration Context</h4><p>At just 1% penetration, Cari generates ~$400M in revenue — and we're targeting the most concentrated, under-digitized vertical in the economy.</p></div>
+      <div class="card anim"><h4>Revenue Composition</h4>
+        <table style="width:100%;font-size:clamp(11px,0.8vw,14px);margin-top:8px;border-collapse:collapse;">
+          <tr><td style="padding:4px 0;">Interchange &amp; Card Spend</td><td style="text-align:right;padding:4px 0;">2.6% of TPV (60%)</td></tr>
+          <tr><td style="padding:4px 0;">ACH &amp; Stablecoin Settlement</td><td style="text-align:right;padding:4px 0;">5 bps (40%)</td></tr>
+          <tr><td style="padding:4px 0;">Vendor SaaS + Marketplace</td><td style="text-align:right;padding:4px 0;">1-1.5% (50%)</td></tr>
+          <tr style="font-weight:700;border-top:2px solid #ddd;"><td style="padding:6px 0;">Blended Rate</td><td style="text-align:right;padding:6px 0;">1.96%</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: The Growth Marketplace -->
+<section class="slide" id="s6" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">The Growth Marketplace</div>
+    <div class="anim slide-subtitle">Vendors allocate growth budgets. Our intelligence engine deploys them for maximum ROI.</div>
+    <div class="green-line anim"></div>
+    <div class="s6-grid" style="display:grid;grid-template-columns:3fr 2fr;gap:24px;margin-top:16px;align-items:center;">
+      <!-- Original PPTX stacked rings graphic -->
+      <div class="anim" data-anim-group="s6-rings" style="position:relative;width:100%;display:flex;align-items:center;justify-content:center;">
+        <img src="growth-rings.png" alt="Stacked platform layers: Marketplace, Intelligence, Infrastructure" style="width:100%;height:auto;">
+      </div>
+      <!-- Detail cards -->
+      <div style="display:flex;flex-direction:column;gap:14px;justify-content:center;">
+        <div class="card anim" data-anim-group="s6-card-1" style="padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div style="width:8px;height:30px;background:#d5d1c5;border-radius:4px;"></div><h4 style="margin:0;">Growth &amp; Ads</h4></div>
+          <p style="font-size:clamp(11px,0.75vw,13px);color:#999;margin-bottom:6px;font-weight:600;">Take Rate + Sponsored Placement</p>
+          <ul style="font-size:clamp(12px,0.85vw,15px);line-height:1.6;color:#555;padding-left:16px;margin:0;">
+            <li>Sponsored placement</li><li>Performance marketing</li><li>Data monetization</li>
+          </ul>
+        </div>
+        <div class="card anim" data-anim-group="s6-card-2" style="padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div style="width:8px;height:30px;background:var(--lime);border-radius:4px;"></div><h4 style="margin:0;">Optimization</h4></div>
+          <p style="font-size:clamp(11px,0.75vw,13px);color:#999;margin-bottom:6px;font-weight:600;">AI Analytics</p>
+          <ul style="font-size:clamp(12px,0.85vw,15px);line-height:1.6;color:#555;padding-left:16px;margin:0;">
+            <li>Churn prediction</li><li>Incentive Optimization</li><li>Price Sensitivity</li><li>SKU benchmarking</li>
+          </ul>
+        </div>
+        <div class="card anim" data-anim-group="s6-card-3" style="padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div style="width:8px;height:30px;background:var(--forest);border-radius:4px;"></div><h4 style="margin:0;">Payments</h4></div>
+          <p style="font-size:clamp(11px,0.75vw,13px);color:#999;margin-bottom:6px;font-weight:600;">Interchange + Vendor Fees</p>
+          <ul style="font-size:clamp(12px,0.85vw,15px);line-height:1.6;color:#555;padding-left:16px;margin:0;">
+            <li>Card Programs</li><li>Bill Pay / ACH</li><li>Payment Processing</li><li>Vendor Onboarding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="anim slide-subtitle" style="text-align:center;width:100%;max-width:100%;margin-left:auto;margin-right:auto;margin-top:48px;padding-bottom:8px;">Monetizing optimization, not just transactions.</p>
+  </div>
+</section>
+
+<!-- SLIDE 7: Industry-Tailored Product Solution -->
+<section class="slide" id="s7" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">Industry-Tailored Product Solution</div>
+    <div class="green-line anim"></div>
+    <div class="grid-2">
+      <div class="anim" data-anim-group="images"><img src="assets/image23.jpeg" class="slide-img" style="border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.1);" alt="Product"></div>
+      <div style="display:flex;flex-direction:column;gap:48px;justify-content:center;">
+        <div class="anim" data-anim-group="charge-card">
+          <h3 style="font-size:clamp(16px,1.3vw,22px);margin-bottom:12px;color:var(--green);">01 Cari Commercial Charge Card</h3>
+          <p class="slide-subtitle">This high-limit card features a 30-day cycle that provides operators with the strategic breathing room to master cash flow and manage liquidity effectively. By capturing essential spend, it transforms operational spend into a powerful rewards engine.</p>
+        </div>
+        <div class="anim" data-anim-group="rewards-os">
+          <h3 style="font-size:clamp(16px,1.3vw,22px);margin-bottom:12px;color:var(--green);">02 Cari Rewards OS: Intelligent AR</h3>
+          <p class="slide-subtitle">A first-of-its-kind engine built to decode and reward B2B behavior thoughtfully. While operators earn rewards on every dollar of spend, <strong>Vendors receive growth incentives for expanding the network</strong> — turning payment processing into a high-yield customer acquisition tool.</p>
+          <p class="slide-subtitle" style="margin-top:12px;">Cari's Rewards OS enables vendors to automate intelligent incentives that accelerate payment cycles while deepening the operator relationships that sustain their business.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: AI-Driven Operations (CREAM bg, not dark) -->
+<section class="slide" id="s8" style="background:var(--cream);overflow:visible;">
+  <div class="slide-inner">
+    <div class="anim slide-title">AI-Driven Operations:</div>
+    <div class="anim slide-subtitle" style="color:#A0A5A2;">The Cari Intelligence Suite for Suppliers and Their Customers</div>
+    <div class="gold-line anim"></div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div style="position:relative;">
+        <div class="anim" data-anim-group="s8-dashboard"><img src="assets/image24.png" class="slide-img" style="border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.1);" alt="AI Dashboard"></div>
+        <!-- Chef Bubble 1: top right area -->
+        <div class="anim chef-bubble" data-anim-group="s8-chef-1" style="position:absolute;top:6%;right:3%;width:38%;background:#fff;border-radius:10px;padding:8px 10px;box-shadow:0 2px 12px rgba(0,0,0,0.1);z-index:5;display:flex;gap:6px;align-items:flex-start;">
+          <div style="width:20px;height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--forest)"><path d="M12 2C9.5 2 7.5 3.5 7 5.5C5.3 5.9 4 7.3 4 9c0 2 1.5 3.5 3.5 3.9V14h9v-1.1c2-.4 3.5-1.9 3.5-3.9 0-1.7-1.3-3.1-3-3.5C16.5 3.5 14.5 2 12 2zM7.5 16v2h9v-2h-9z"/></svg></div>
+          <div><strong style="color:var(--forest);font-size:9px;">Chef:</strong><p style="font-size:9px;color:#555;line-height:1.4;margin-top:1px;">Your 'Gobble Up' campaign is up 15% with 176 participants. Should I add a multiplier to clear remaining turkey inventory before 12/24?</p></div>
+        </div>
+        <!-- Chef Bubble 2: middle left area -->
+        <div class="anim chef-bubble" data-anim-group="s8-chef-2" style="position:absolute;top:45%;left:3%;width:36%;background:#fff;border-radius:10px;padding:8px 10px;box-shadow:0 2px 12px rgba(0,0,0,0.1);z-index:5;display:flex;gap:6px;align-items:flex-start;">
+          <div style="width:20px;height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--forest)"><path d="M12 2C9.5 2 7.5 3.5 7 5.5C5.3 5.9 4 7.3 4 9c0 2 1.5 3.5 3.5 3.9V14h9v-1.1c2-.4 3.5-1.9 3.5-3.9 0-1.7-1.3-3.1-3-3.5C16.5 3.5 14.5 2 12 2zM7.5 16v2h9v-2h-9z"/></svg></div>
+          <div><strong style="color:var(--forest);font-size:9px;">Chef:</strong><p style="font-size:9px;color:#555;line-height:1.4;margin-top:1px;">31% of invoices overdue. Offer 1.5x multiplier to clear backlog and recapture 2% margin. Send offer?</p></div>
+        </div>
+        <!-- Chef Bubble 3: bottom right area -->
+        <div class="anim chef-bubble" data-anim-group="s8-chef-3" style="position:absolute;bottom:18%;right:4%;width:32%;background:#fff;border-radius:10px;padding:8px 10px;box-shadow:0 2px 12px rgba(0,0,0,0.1);z-index:5;display:flex;gap:6px;align-items:flex-start;">
+          <div style="width:20px;height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--forest)"><path d="M12 2C9.5 2 7.5 3.5 7 5.5C5.3 5.9 4 7.3 4 9c0 2 1.5 3.5 3.5 3.9V14h9v-1.1c2-.4 3.5-1.9 3.5-3.9 0-1.7-1.3-3.1-3-3.5C16.5 3.5 14.5 2 12 2zM7.5 16v2h9v-2h-9z"/></svg></div>
+          <div><strong style="color:var(--forest);font-size:9px;">Chef:</strong><p style="font-size:9px;color:#555;line-height:1.4;margin-top:1px;">Your payments are processing 20% faster with Cari!</p></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;" class="s8-modules">
+        <div class="anim" data-anim-group="s8-module" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--forest);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;margin-top:2px;">01</div>
+          <div><strong style="color:#111827;">Line-Item Price Comparison</strong><br><span style="color:var(--green);font-size:13px;">The AI: Competitive benchmarking via OCR</span><br><span style="color:#6B7280;font-size:13px;">Action: "Switch from Vendor X to Y for this item to save $1,200/mo."</span></div>
+        </div>
+        <div class="anim" data-anim-group="s8-module" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--forest);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;margin-top:2px;">02</div>
+          <div><strong style="color:#111827;">Cari Incentive Modular</strong><br><span style="color:var(--green);font-size:13px;">The AI: Dynamic SKU-level incentive engine</span><br><span style="color:#6B7280;font-size:13px;">Action: Recommends targeted "Point Multipliers" to clear aging inventory, promote new products, and target trending categories.</span></div>
+        </div>
+        <div class="anim" data-anim-group="s8-module" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--forest);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;margin-top:2px;">03</div>
+          <div><strong style="color:#111827;">Network Growth Recommendations</strong><br><span style="color:var(--green);font-size:13px;">The AI: Cross-network "Warm Lead" identifier</span><br><span style="color:#6B7280;font-size:13px;">Action: Identifies profitable non-Cari customers and auto-generates personalized welcome incentive campaigns.</span></div>
+        </div>
+        <div class="anim" data-anim-group="s8-module" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--forest);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;margin-top:2px;">04</div>
+          <div><strong style="color:#111827;">"Missed Cash" Ledger</strong><br><span style="color:var(--green);font-size:13px;">The AI: Loss-aversion monitoring</span><br><span style="color:#6B7280;font-size:13px;">Action: Scans non-Cari payments and alerts operators on missed rewards.</span></div>
+        </div>
+        <div class="anim" data-anim-group="s8-module" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--forest);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;margin-top:2px;">05</div>
+          <div><strong style="color:#111827;">The Co-Pilot: "Chef"</strong><br><span style="color:var(--green);font-size:13px;">The AI: Conversational Agent (Interactive Core)</span><br><span style="color:#6B7280;font-size:13px;">Action: "Chef: Pay these 3 invoices by 5 PM to hit 3-Star status and unlock a 2x multiplier."</span></div>
+        </div>
+        <div class="anim" data-anim-group="s8-module" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--forest);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;margin-top:2px;">06</div>
+          <div><strong style="color:#111827;">Cari ROI Visualizer</strong><br><span style="color:var(--green);font-size:13px;">The AI: Real-time margin recovery calculator</span><br><span style="color:#6B7280;font-size:13px;">Action: Aggregates interchange savings, early-pay rewards, and DSO compression to quantify dollar impact.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 9: Monetizing Efficiency -->
+<section class="slide" id="s9" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">Monetizing Efficiency</div>
+    <div class="anim slide-subtitle" style="color:#A0A5A2;">Cari generates high gross margins while providing vendors with asap liquidity.</div>
+    <div class="gold-line anim"></div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div class="anim">
+          <h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:8px;">The Settlement-Netting Model</h4>
+          <div style="width:100%;height:1px;background:#ddd;margin-bottom:12px;"></div>
+          <p class="slide-subtitle"><strong>Zero-Invoicing Friction:</strong> Cari collects 1-1.5% service fee from the vendor, tiered by settlement speed (fees based on speed of settlement).</p>
+          <p class="slide-subtitle" style="margin-top:8px;"><strong>Automated Collection:</strong> Fees are deducted directly from the settlement. Vendors never write a check; they simply receive their capital faster, net of Cari's fee and the loyalty rewards.</p>
+        </div>
+        <div class="anim">
+          <h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:8px;">Strategic DSO Compression</h4>
+          <div style="width:100%;height:1px;background:#ddd;margin-bottom:12px;"></div>
+          <p class="slide-subtitle"><strong>Liquidity Velocity:</strong> For a distributor, paying an interchange fee to accelerate payment by 20 days represents significant annualized saving on working capital.</p>
+          <p class="slide-subtitle" style="margin-top:8px;"><strong>The Outcome:</strong> The vendor is more liquid, the restaurant is rewarded, and Cari captures the spread.</p>
+        </div>
+        <div class="anim">
+          <h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:8px;">Vendor-Funded Loyalty</h4>
+          <div style="width:100%;height:1px;background:#ddd;margin-bottom:12px;"></div>
+          <p class="slide-subtitle"><strong>Redirected Spend:</strong> The rewards earned by restaurants for early payments, enabled by Cari, are funded by the vendor, not Cari.</p>
+          <p class="slide-subtitle" style="margin-top:8px;"><strong>Capital Reallocation:</strong> We empower vendors to redirect "leaky" dollars — previously lost to rebates, discounts, and collections — into a high-signal loyalty engine that drives repeat order volume.</p>
+        </div>
+      </div>
+      <div class="anim"><img src="assets/image27.png" class="slide-img" style="border-radius:16px;" alt="Revenue Model"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 10: Network Acquisition -->
+<section class="slide" id="s10" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">We Don't Acquire Customers.<br>We Acquire Networks.</div>
+    <div class="gold-line anim"></div>
+    <div class="grid-2" style="margin-bottom:24px;align-items:center;">
+      <div>
+        <div class="anim"><h3 style="font-size:clamp(16px,1.3vw,22px);margin-bottom:12px;color:var(--vendor-gold);">The Vendor Push:</h3><p class="slide-subtitle">Distributors don't promote Cari, they embed it. Every invoice is an entry point, and every sales rep has applications in their pocket.</p></div>
+        <div style="margin-top:48px;" class="anim"><h3 style="font-size:clamp(16px,1.3vw,22px);margin-bottom:12px;color:var(--green);">The Buyer Pull:</h3><p class="slide-subtitle">In foodservice, a vendor's best customer is their most trusted referral source. When a marquee customer asks their vendor to accept Cari, the sales cycle collapses.</p></div>
+      </div>
+      <!-- Push/Pull circular flywheel loop -->
+      <div class="s10-flywheel" style="position:relative;width:420px;height:500px;margin:0 auto;">
+        <!-- Oval track (SVG) -->
+        <svg class="anim" data-anim-group="s10-track" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;" viewBox="0 0 420 500" fill="none">
+          <defs>
+            <marker id="arr-gold" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 10,4 0,8" fill="#D4A843"/></marker>
+            <marker id="arr-green" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 10,4 0,8" fill="#4A7C59"/></marker>
+          </defs>
+          <ellipse cx="210" cy="250" rx="175" ry="200" stroke="#ddd" stroke-width="1" stroke-dasharray="6 4" fill="none"/>
+          <path class="s10-arrow-r" id="s10PathR" d="M280 68 C410 120, 410 380, 280 432" stroke="#D4A843" stroke-width="2.5" stroke-dasharray="8 5" fill="none" marker-end="url(#arr-gold)" style="animation:dashFlow 2s linear infinite;"/>
+          <path class="s10-arrow-l" id="s10PathL" d="M140 432 C10 380, 10 120, 140 68" stroke="#4A7C59" stroke-width="2.5" stroke-dasharray="8 5" fill="none" marker-end="url(#arr-green)" style="animation:dashFlow 2s linear infinite;"/>
+          <!-- Traveling dots -->
+          <circle class="s10-dot" r="6" fill="#D4A843" opacity="0"><animateMotion dur="2.5s" repeatCount="indefinite" begin="0s"><mpath href="#s10PathR"/></animateMotion></circle>
+          <circle class="s10-dot" r="4" fill="#D4A843" opacity="0"><animateMotion dur="2.5s" repeatCount="indefinite" begin="0.8s"><mpath href="#s10PathR"/></animateMotion></circle>
+          <circle class="s10-dot" r="6" fill="#4A7C59" opacity="0"><animateMotion dur="2.5s" repeatCount="indefinite" begin="0.3s"><mpath href="#s10PathL"/></animateMotion></circle>
+          <circle class="s10-dot" r="4" fill="#4A7C59" opacity="0"><animateMotion dur="2.5s" repeatCount="indefinite" begin="1.1s"><mpath href="#s10PathL"/></animateMotion></circle>
+          <text class="s10-label-r" x="405" y="250" font-size="11" fill="#D4A843" font-weight="600" text-anchor="middle" transform="rotate(90,405,250)">EMBED</text>
+          <text class="s10-label-l" x="15" y="250" font-size="11" fill="#4A7C59" font-weight="600" text-anchor="middle" transform="rotate(-90,15,250)">REFER</text>
+        </svg>
+        <!-- Cari logo in center — appears first -->
+        <div class="anim" data-anim-group="s10-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:linear-gradient(145deg, #e8e8e8 0%, #c0c0c0 25%, #a8a8a8 50%, #d4d4d4 75%, #b0b0b0 100%);display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 4px 20px rgba(0,0,0,0.2), 0 0 0 2px rgba(255,255,255,0.3), inset 0 1px 3px rgba(255,255,255,0.4);animation:pulse-glow 3s ease-in-out infinite;">
+          <img src="assets/image3.png" style="width:40px;height:40px;object-fit:contain;filter:brightness(0);" alt="Cari">
+        </div>
+        <!-- Push box — drops in from top -->
+        <div class="anim" data-anim-group="s10-push" style="position:absolute;top:20px;left:50%;transform:translateX(-50%);border:2px solid var(--gold);border-radius:16px;padding:16px 28px;text-align:center;background:var(--cream);z-index:2;min-width:180px;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
+          <div style="font-size:20px;font-weight:700;margin-bottom:4px;color:var(--gold);">Push</div>
+          <p style="font-size:13px;color:#555;"><span style="color:var(--vendor-gold);font-weight:700;">Vendors</span> bring <span style="color:var(--buyer);font-weight:700;">Buyers</span> into <span style="color:var(--green);font-weight:700;">Cari</span></p>
+        </div>
+        <!-- Pull box — rises from bottom -->
+        <div class="anim" data-anim-group="s10-pull" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);border:2px solid var(--green);border-radius:16px;padding:16px 28px;text-align:center;background:var(--cream);z-index:2;min-width:180px;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
+          <div style="font-size:20px;font-weight:700;margin-bottom:4px;color:var(--green);">Pull</div>
+          <p style="font-size:13px;color:#555;"><span style="color:var(--buyer);font-weight:700;">Buyers</span> ask for <span style="color:var(--green);font-weight:700;">Cari</span> from their other <span style="color:var(--vendor-gold);font-weight:700;">Vendors</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="anim" style="background:rgba(74,124,89,0.05);border:1px solid rgba(74,124,89,0.15);border-radius:16px;padding:24px;">
+      <p style="font-size:clamp(13px,1vw,17px);line-height:1.7;">
+        <strong>▸ Network-Driven CAC:</strong> Leveraging existing B2B relationships for lightweight, organic customer acquisition.<br>
+        <strong>▸ Compounding Sales Velocity:</strong> Each new vendor unlocks a cluster of restaurants; each new group unlocks a fleet of vendors.<br>
+        <strong>▸ Zero-Friction Integration:</strong> Harnessing the power of established supply chain networks to scale without the heavy lift.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 11: Case Study: Tacombi -->
+<section class="slide" id="s11" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">Case Study: Tacombi</div>
+    <div class="green-line anim"></div>
+    <div class="s11-grid" style="display:grid;grid-template-columns:2fr 3fr;gap:24px;align-items:stretch;">
+      <div class="anim" style="overflow:hidden;border-radius:16px;max-height:300px;">
+        <img src="assets/image28.jpeg" style="width:100%;height:100%;object-fit:cover;" alt="Tacombi">
+      </div>
+      <div class="mobile-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="anim">
+          <h4 style="color:var(--green);font-size:clamp(15px,1.1vw,19px);margin-bottom:12px;">The Restaurant</h4>
+          <p class="slide-subtitle"><strong>The Partner:</strong> Tacombi is a premier Mexican taqueria and CPG brand with 20+ current units and a massive <strong>75+ location expansion roadmap</strong>.</p>
+          <p class="slide-subtitle" style="margin-top:8px;"><strong>The Challenge:</strong> Managing <strong>$25M in annual COGS</strong> across Tier-1 vendors (Chefs' Warehouse, Pat LaFrieda) while scaling rapidly requires extreme capital efficiency.</p>
+          <div style="margin-top:12px;background:rgba(74,124,89,0.06);border:1px solid rgba(74,124,89,0.15);border-radius:12px;padding:14px;">
+            <p class="slide-subtitle" style="margin:0;"><strong style="color:var(--green);">The Cari Impact:</strong><br><strong>$500,000+ in annual bottom-line savings</strong> via 2% rewards. Capital velocity dramatically improved.</p>
+          </div>
+        </div>
+        <div class="anim">
+          <h4 style="color:var(--gold);font-size:clamp(15px,1.1vw,19px);margin-bottom:12px;">The Vendor</h4>
+          <p class="slide-subtitle"><strong>The Problem:</strong> Traditional 24-day payment terms (average 41 DSO) force vendors to carry <strong>$1.75M–$2M in standing receivables for Tacombi alone</strong>. They are "unwilling bankers" with trapped liquidity.</p>
+          <p class="slide-subtitle" style="margin-top:8px;"><strong>The Growth Tax:</strong> As Tacombi scales, the vendor's capital strain increases. Under the old model, a customer's success becomes a vendor's liability.</p>
+          <div style="margin-top:12px;background:rgba(212,168,67,0.08);border:1px solid rgba(212,168,67,0.2);border-radius:12px;padding:14px;">
+            <p class="slide-subtitle" style="margin:0;"><strong style="color:var(--gold);">The Cari Intervention:</strong> Immediate settlement eliminates DSO. Collections fully automated.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 12: Launch Partners & Pipeline -->
+<section class="slide" id="s12" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">Launch Partners &amp; Pipeline</div>
+    <div class="green-line anim"></div>
+    <div class="grid-2" style="margin-top:10px;align-items:stretch;">
+      <div class="card anim" style="background:#EFEDE3;text-align:center;padding:16px 36px 36px;display:flex;flex-direction:column;min-width:0;">
+        <h4 style="margin-bottom:6px;font-size:clamp(15px,1.1vw,19px);">Restaurant Partners</h4>
+        <p style="margin-bottom:0;font-size:clamp(12px,0.9vw,15px);">Multi-unit restaurant groups and emerging franchise brands with 20-50+ locations and high-volume operational spend</p>
+        <div style="display:flex;flex-direction:column;gap:16px;align-items:center;margin-top:10px;">
+          <div class="anim" data-anim-group="s12-logo" style="height:90px;display:flex;align-items:center;justify-content:center;"><img src="assets/image29.png" style="max-height:90px;max-width:280px;object-fit:contain;" alt=""></div>
+          <div style="display:flex;justify-content:space-evenly;align-items:center;width:100%;max-width:500px;margin:0 auto;">
+            <div class="anim" data-anim-group="s12-logo" style="height:90px;display:flex;align-items:center;justify-content:center;"><img src="assets/image31.png" style="max-height:110px;max-width:280px;object-fit:contain;" alt=""></div>
+            <div class="anim" data-anim-group="s12-logo" style="height:90px;display:flex;align-items:center;justify-content:center;"><img src="assets/image30.png" style="max-height:110px;max-width:280px;object-fit:contain;" alt=""></div>
+          </div>
+        </div>
+      </div>
+      <div class="card anim" style="background:#EFEDE3;text-align:center;padding:16px 36px 36px;display:flex;flex-direction:column;min-width:0;">
+        <h4 style="margin-bottom:6px;font-size:clamp(15px,1.1vw,19px);">Key Vendor Partners</h4>
+        <p style="margin-bottom:0;font-size:clamp(12px,0.9vw,15px);">Regional and national distributors serving thousands of restaurant accounts across produce, protein, packaging, and supplies</p>
+        <div style="display:flex;flex-direction:column;gap:16px;align-items:center;margin-top:10px;">
+          <div class="anim" data-anim-group="s12-logo" style="height:90px;display:flex;align-items:center;justify-content:center;"><img src="assets/image32.png" style="max-height:55px;max-width:200px;object-fit:contain;" alt=""></div>
+          <div style="display:flex;justify-content:space-evenly;align-items:center;width:100%;max-width:500px;margin:0 auto;">
+            <div class="anim" data-anim-group="s12-logo" style="height:90px;display:flex;align-items:center;justify-content:center;"><img src="assets/image33.png" style="max-height:50px;max-width:160px;object-fit:contain;" alt=""></div>
+            <div class="anim" data-anim-group="s12-logo" style="height:90px;display:flex;align-items:center;justify-content:center;"><img src="assets/image34.png" style="max-height:50px;max-width:160px;object-fit:contain;" alt=""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13: Platform for an Industry -->
+<section class="slide" id="s13" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title" data-anim-group="title13">We're building the platform for the hospitality industry</div>
+    <div class="anim slide-subtitle" data-anim-group="title13">Payment is the feature. The network is the asset.</div>
+    <div class="green-line anim" data-anim-group="title13"></div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;">
+      <div class="card anim" data-anim-group="bars13" style="display:flex;align-items:center;gap:16px;border-left:4px solid var(--orange);">
+        <div style="width:40px;height:40px;background:var(--orange);border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="assets/image35.svg" style="width:24px;height:24px;" alt="" onerror="this.outerHTML='<span style=color:#fff;font-weight:700>$</span>'"></div>
+        <div><h4>Payments <span style="color:#777;font-weight:400;">The Wedge</span></h4><p>Every Cari transaction generates more than a payment — it's a structured data event that embeds us into daily operations.</p></div>
+      </div>
+      <div class="card anim" data-anim-group="bars13" style="display:flex;align-items:center;gap:16px;border-left:4px solid var(--blue);">
+        <div style="width:40px;height:40px;background:var(--blue);border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="assets/image36.svg" style="width:24px;height:24px;" alt="" onerror="this.outerHTML='<span style=color:#fff;font-weight:700>D</span>'"></div>
+        <div><h4>Data <span style="color:#777;font-weight:400;">The Asset</span></h4><p>Buyer behavior, vendor performance, price elasticity — all feeding a unified data layer in real time. Every interaction becomes a behavioral signal that compounds over time, building a proprietary dataset that doesn't exist in the market today.</p></div>
+      </div>
+      <div class="card anim" data-anim-group="bars13" style="display:flex;align-items:center;gap:16px;border-left:4px solid #F1D160;">
+        <div style="width:40px;height:40px;background:#F1D160;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="assets/image37.svg" style="width:24px;height:24px;" alt="" onerror="this.outerHTML='<span style=color:#333;font-weight:700>AI</span>'"></div>
+        <div><h4>Optimization <span style="color:#777;font-weight:400;">The Edge</span></h4><p>AI-driven intelligence that predicts churn, optimizes incentives, and allocates spend dynamically — turning data into decisions that get smarter with every transaction.</p></div>
+      </div>
+      <div class="card anim" data-anim-group="bars13" style="display:flex;align-items:center;gap:16px;border-left:4px solid var(--olive);">
+        <div style="width:40px;height:40px;background:var(--olive);border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="assets/image38.svg" style="width:24px;height:24px;" alt="" onerror="this.outerHTML='<span style=color:#fff;font-weight:700>M</span>'"></div>
+        <div><h4>Marketplace <span style="color:#777;font-weight:400;">The Profit Engine</span></h4><p>Vendors allocate growth budgets to reach the right buyers at the right moment. Cari takes a performance-based fee on every dollar that works — turning the network into a monetization platform.</p></div>
+      </div>
+    </div>
+    <p class="anim s13-quote" style="text-align:center;margin-top:40px;padding:28px 0;width:100%;font-size:clamp(18px,1.6vw,28px);font-weight:700;color:var(--dark);letter-spacing:-0.3px;line-height:1.4;">Companies that own networks win.<br class="s13-br"> Companies that rent them don't.</p>
+  </div>
+</section>
+
+<!-- SLIDE 14: Accomplishments -->
+<section class="slide" id="s14" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">What We've Accomplished</div>
+    <div class="anim" style="width:120px;height:4px;background:var(--blue);margin:12px 0 24px;border-radius:2px;"></div>
+    <div class="grid-2">
+      <div class="anim" style="font-size:clamp(14px,1vw,17px);line-height:1.8;display:flex;flex-direction:column;justify-content:space-evenly;height:100%;gap:20px;">
+        <p><strong>Cari Card Live</strong> — Now issuing high-limit commercial charge cards with 30-day cycles to manage COGS and T&amp;E</p>
+        <p><strong>Network Activation</strong> — Rapidly onboarding anchor restaurant groups and Tier-1 vendors including Chef's Warehouse and Pat LaFrieda</p>
+        <p><strong>Team Built Out</strong> — Full team in place across product, engineering, operations, and growth</p>
+        <p><strong>Strong Demand</strong> — Growing waitlist of restaurant groups and vendors ready to onboard</p>
+      </div>
+      <div class="anim"><img src="assets/plates.jpg" class="slide-img" style="border-radius:16px;" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 15: 2026 Roadmap -->
+<section class="slide" id="s15" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">2026 Roadmap</div>
+    <div class="anim slide-subtitle">Using Series A capital to transition from the hospitality industry's preferred card to its indispensable financial platform.</div>
+    <div class="gold-line anim"></div>
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="anim"><img src="assets/image40.png" class="slide-img" style="border-radius:16px;" alt=""></div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="anim"><h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:8px;">Phase 1: Market Entry &amp; Validation (Current – Series A)</h4><div style="width:100%;height:1px;background:#ddd;margin-bottom:10px;"></div><p class="slide-subtitle"><strong>Real-Time Rewards:</strong> Activating the Rewards OS to turn mandatory daily invoices into an engagement layer. <strong>Revenue Tracking:</strong> First partner cohorts generating measurable interchange + fee revenue.</p></div>
+        <div class="anim"><h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:8px;">Phase 2: The Treasury Expansion (Post-Funding – Q2/Q3)</h4><div style="width:100%;height:1px;background:#ddd;margin-bottom:10px;"></div><p class="slide-subtitle"><strong>Cari Cash Launch (Q2):</strong> Deploying centralized treasury accounts that automate a restaurant's core financial operations. <strong>FBO Infrastructure:</strong> Building the rails for instant settlement and vendor disbursement.</p></div>
+        <div class="anim"><h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:8px;">Phase 3: The Intelligence Layer (Q4 – 2027)</h4><div style="width:100%;height:1px;background:#ddd;margin-bottom:10px;"></div><p class="slide-subtitle"><strong>Direct Settlement Bypass:</strong> Utilizing our debt facility and treasury volume to settle vendor payments directly — bypassing traditional card rails entirely.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 16: Leadership Team (no changes needed) -->
+<section class="slide" id="s16" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">World Class Leadership Team</div>
+    <div class="green-line anim"></div>
+    <div class="anim slide-subtitle" style="margin-bottom:24px;">Deep institutional expertise across global finance, food-supply logistics, and hyper-growth technology.</div>
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="card anim" style="display:flex;gap:16px;align-items:center;"><img src="assets/image41.png" style="width:80px;height:80px;border-radius:12px;object-fit:cover;" alt=""><div><h4>Dylan Bell</h4><p style="color:var(--green);font-weight:600;font-size:13px;">Co-Founder &amp; Co-CEO</p><p>Ex COO at Cling Brands, scaled $0 to $40M revenue/year</p></div></div>
+      <div class="card anim" style="display:flex;gap:16px;align-items:center;"><img src="assets/image42.png" style="width:80px;height:80px;border-radius:12px;object-fit:cover;" alt=""><div><h4>Jay Gujjar</h4><p style="color:var(--green);font-weight:600;font-size:13px;">Co-Founder &amp; Co-CEO</p><p>Ex-COO &amp; President of Tacombi, Blue Bottle, Sweetgreen, Goldman Sachs</p></div></div>
+    </div>
+    <div class="grid-3">
+      <div class="card anim" style="display:flex;gap:12px;align-items:center;"><img src="assets/image43.png" style="width:60px;height:60px;border-radius:10px;object-fit:cover;" alt=""><div><h4 style="font-size:14px;">Noah Shaffer</h4><p style="color:var(--green);font-size:11px;font-weight:600;">Chief Revenue Officer</p><p style="font-size:12px;">CEO of Cutting Edge Foods</p></div></div>
+      <div class="card anim" style="display:flex;gap:12px;align-items:center;"><img src="assets/image44.png" style="width:60px;height:60px;border-radius:10px;object-fit:cover;" alt=""><div><h4 style="font-size:14px;">Marco Ronning</h4><p style="color:var(--gold);font-size:11px;font-weight:600;">Strategic Advisor</p><p style="font-size:12px;">Head of IR &amp; Partnerships at Brex</p></div></div>
+      <div class="card anim" style="display:flex;gap:12px;align-items:center;"><img src="assets/image45.png" style="width:60px;height:60px;border-radius:10px;object-fit:cover;" alt=""><div><h4 style="font-size:14px;">Pat LaFrieda Jr.</h4><p style="color:var(--gold);font-size:11px;font-weight:600;">Strategic Advisor</p><p style="font-size:12px;">CEO, Pat LaFrieda Meat Purveyors</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 17: Appendix -->
+<section class="slide" id="s17" style="background:var(--cream)">
+  <div class="slide-inner" style="display:flex;align-items:center;gap:48px;">
+    <div class="anim" style="flex:1;"><img src="assets/chef-tomatoes.jpg" class="slide-img" style="border-radius:16px;max-height:70vh;" alt=""></div>
+    <div class="anim" style="flex:1;text-align:center;"><div class="slide-title" style="font-size:clamp(36px,4vw,72px);">Appendix</div><div style="width:100%;height:2px;background:#ddd;margin:24px 0;"></div></div>
+  </div>
+</section>
+
+<!-- SLIDE 18: Strategic Ecosystem -->
+<section class="slide" id="s18" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title" style="font-size:clamp(22px,2.5vw,42px);">Strategic Ecosystem: Financial &amp; Payment Infrastructure</div>
+    <div class="green-line anim"></div>
+    <div class="anim slide-subtitle" style="margin-bottom:24px;">A robust team of industry leaders powering Cari's core financial operations through banking, card networks, and compliance infrastructure.</div>
+    <div class="grid-3" style="align-items:stretch;">
+      <div class="card anim" style="text-align:center;padding:24px 16px;"><div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><img src="assets/image47.png" style="max-height:55px;max-width:160px;object-fit:contain;" alt=""></div><h4>Sponsor Bank</h4><p>Our primary sponsor bank providing the regulatory and banking foundation for the Cari Card.</p></div>
+      <div class="card anim" style="text-align:center;padding:24px 16px;"><div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><img src="assets/image48.png" style="max-height:55px;max-width:160px;object-fit:contain;" alt=""></div><h4>Card Network</h4><p>Global leader in payment networks, facilitating card acceptance and transactions.</p></div>
+      <div class="card anim" style="text-align:center;padding:24px 16px;"><div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><img src="assets/image49.png" style="max-height:45px;max-width:140px;object-fit:contain;" alt=""></div><h4>Issuer Processor</h4><p>Powers card issuance and management, streamlining dispute resolution.</p></div>
+      <div class="card anim" style="text-align:center;padding:24px 16px;"><div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><img src="assets/image50.png" style="max-height:55px;max-width:160px;object-fit:contain;" alt=""></div><h4>Payment Processor</h4><p>Manages seamless payment processing and transaction disputes.</p></div>
+      <div class="card anim" style="text-align:center;padding:24px 16px;"><div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><img src="assets/image51.png" style="max-height:45px;max-width:130px;object-fit:contain;" alt=""></div><h4>Application &amp; Onboarding</h4><p>Orchestrates the application process with integrated connectivity tools.</p></div>
+      <div class="card anim" style="text-align:center;padding:24px 16px;"><div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><img src="assets/image52.png" style="max-height:55px;max-width:160px;object-fit:contain;" alt=""></div><h4>Compliance &amp; Strategy</h4><p>Strategic advisors for bank partnerships and regulatory roadmap.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 19: One Platform -->
+<section class="slide" id="s19" style="background:var(--cream)">
+  <div class="slide-inner" style="text-align:center;">
+    <div class="anim slide-title">One Platform to Pay, Earn and Grow Your Network</div>
+    <div class="gold-line anim" style="margin:12px auto 24px;"></div>
+    <div class="anim"><img src="assets/image53.png" class="slide-img" style="max-height:65vh;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.08);" alt="Platform"></div>
+  </div>
+</section>
+
+<!-- SLIDE 20: Loyalty-as-a-Service -->
+<section class="slide" id="s20" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">Loyalty-as-a-Service (LaaS)</div>
+    <div class="anim slide-subtitle" style="color:#A0A5A2;">Reversing the Flow of B2B Payments</div>
+    <div class="green-line anim"></div>
+    <div class="anim slide-subtitle" style="margin-bottom:24px;">Legacy rails are extractive — they drain value through fees and float, creating a zero-sum game. <strong>Cari reverses this flow</strong>, creating a <strong>positive-sum ecosystem</strong> where the payment rail distributes value back to the participants.</div>
+    <!-- Image left, text right -->
+    <div class="mobile-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+      <div class="anim"><img src="assets/laas-screens.png" style="width:100%;height:auto;display:block;" alt="LaaS Product Screenshots"></div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="anim">
+          <h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:10px;">How Cari Does it</h4>
+          <p class="slide-subtitle"><strong>Merchant Incentives:</strong> Cari rewards vendors 50-100 bps on transaction throughput, turning payments into a revenue stream that enriches the ecosystem.</p>
+          <p class="slide-subtitle" style="margin-top:12px;"><strong>Rewards OS:</strong> A single, lossless rail integrates all customer benefits and incentives with zero check settlement or administrative friction.</p>
+        </div>
+        <div class="anim">
+          <h4 style="font-size:clamp(15px,1.1vw,19px);margin-bottom:10px;">What Cari Gets</h4>
+          <p class="slide-subtitle"><strong>Organic Distribution:</strong> Merchants become our primary sales channel, driving network growth through their own financial self-interest.</p>
+          <p class="slide-subtitle" style="margin-top:12px;"><strong>Proactive Commerce:</strong> Rewards shift from a reactive retention cost to a proactive operational lever used to drive volume and capture market share.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 21: Network Infrastructure -->
+<section class="slide" id="s21" style="background:var(--cream)">
+  <div class="slide-inner">
+    <div class="anim slide-title">Network Infrastructure:</div>
+    <div class="anim slide-subtitle">Capturing Billions In Annual Spend</div>
+    <div class="gold-line anim"></div>
+    <div class="anim slide-subtitle" style="margin-bottom:24px;">Cari's network can capture most of the expenses that flow through the supply chain in the industry — replacing fragmented legacy systems with a single, high-efficiency platform that stores, earns and rewards buyers and merchants alike.</div>
+    <div class="grid-2">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <div style="display:flex;align-items:center;gap:16px;" class="anim">
+          <div style="font-size:clamp(11px,0.8vw,13px);text-align:right;color:#555;width:100px;">Serviceable<br>Obtainable<br>Market</div>
+          <div style="width:2px;height:40px;border-left:2px dashed #999;"></div>
+          <div class="circle" style="width:180px;height:180px;background:#EFF1E4;"><strong style="font-size:clamp(20px,2vw,32px);">$5B</strong><small style="font-size:11px;">Near-Term Capture</small><small style="font-size:11px;">~$100M Revenue Opportunity</small></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;" class="anim">
+          <div style="font-size:clamp(11px,0.8vw,13px);text-align:right;color:#555;width:100px;">Capturing<br>~1.3% of the<br>$2.0T TAM</div>
+          <div style="width:2px;height:40px;border-left:2px dashed #999;"></div>
+          <div class="circle" style="width:280px;height:280px;background:var(--lime);"><strong style="font-size:clamp(26px,2.5vw,42px);">$26B</strong><small style="font-size:13px;">Hospitality B2B Payments</small><small style="font-size:13px;">$500M Revenue Opportunity</small></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="anim"><h4 style="font-size:clamp(15px,1.1vw,19px);">Near-term Opportunity</h4><div style="width:100%;height:1px;background:#ddd;margin:8px 0;"></div>
+          <p class="slide-subtitle">Process $5B+ in annual volume. Cari becomes the central rail for the industry's liquidity by unifying the full expense stack.</p>
+          <p class="slide-subtitle" style="margin-top:8px;">Cari monetizes the Synthetic Industry Model generating high-margin revenue from credit reporting, market intelligence, and predictive supply chain tools.</p>
+        </div>
+        <div class="anim"><h4 style="font-size:clamp(15px,1.1vw,19px);">Path to $500 Million In Revenue</h4><div style="width:100%;height:1px;background:#ddd;margin:8px 0;"></div>
+          <p class="slide-subtitle"><strong>Phase 1:</strong> Capture card spend at a 2.65% Interchange Fee to fuel the network, and using Vendor funded rewards to their buyers, Cari's Gross Margin is best in class.</p>
+          <p class="slide-subtitle" style="margin-top:8px;"><strong>Phase 2:</strong> Implement Stablecoins for efficient money movement: We capture massive volume at 5-10bps and migrate to stablecoin rails to cut settlement costs vs legacy banks and ACH.</p>
+          <p class="slide-subtitle" style="margin-top:8px;"><strong>Phase 3:</strong> Centralize the Industry Treasury Standard (Cari Cash) and utilizing our debt facility, and bypass credit card processors for direct-to-bank settlement.</p>
+          <p class="slide-subtitle" style="margin-top:12px;">We replace the 30 bps "network tax" with a lower cost of payment processing — returning those savings to our users as "extra-normal" rewards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 22: CTA -->
+<section class="slide" id="s22" style="background:var(--cream);position:relative;">
+  <div class="slide-inner" style="display:flex;align-items:center;min-height:80vh;">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;">
+      <img src="assets/image57.png" style="width:100%;height:100%;object-fit:cover;opacity:0.6;" alt="">
+    </div>
+    <div style="position:relative;z-index:2;max-width:480px;background:rgba(250,249,245,0.92);backdrop-filter:blur(12px);border-radius:20px;padding:48px 40px;box-shadow:0 8px 40px rgba(0,0,0,0.08);">
+      <div class="anim slide-title" style="font-size:clamp(28px,3.5vw,56px);line-height:1.1;">Don't carry payment stress.<br><span style="color:var(--green);">Cari it.</span></div>
+      <p class="anim slide-subtitle" style="margin-top:16px;">Whether you're running a restaurant or supply one, Cari makes payments easy and rewarding.</p>
+      <div class="anim" style="margin-top:24px;">
+        <a href="#" style="display:inline-block;background:var(--blue);color:#fff;padding:16px 36px;border-radius:8px;font-weight:700;font-size:clamp(14px,1.1vw,18px);text-decoration:none;text-transform:uppercase;letter-spacing:1.5px;">Join the Waitlist</a>
+      </div>
+    </div>
+    <div class="s22-card" style="position:absolute;right:5%;top:50%;transform:translateY(-50%);z-index:3;">
+      <img src="assets/image59.png" class="bob" style="width:clamp(120px,22vw,380px);filter:drop-shadow(0 20px 40px rgba(0,0,0,0.15));opacity:1;" alt="Cari Card">
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Mobile: split slide 3 into two snap sections (problem + solution)
+if (window.matchMedia('(max-width:768px)').matches) {
+  const s3 = document.getElementById('s3');
+  const solution = s3.querySelector('.s3-solution');
+  if (solution) {
+    // Create a new section for the solution
+    const s3b = document.createElement('section');
+    s3b.className = 'slide';
+    s3b.id = 's3b';
+    s3b.style.background = 'var(--cream)';
+    // Create inner wrapper
+    const inner = document.createElement('div');
+    inner.className = 'slide-inner';
+    // Move solution into new section
+    inner.appendChild(solution);
+    s3b.appendChild(inner);
+    // Insert after s3
+    s3.after(s3b);
+  }
+}
+
+// Nav dots
+const nav = document.getElementById('nav');
+const slides = document.querySelectorAll('.slide');
+slides.forEach((s, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'nav-dot';
+  dot.onclick = () => s.scrollIntoView({behavior:'smooth'});
+  nav.appendChild(dot);
+});
+const dots = document.querySelectorAll('.nav-dot');
+function setDot(i) { dots.forEach(d => d.classList.remove('active')); if(dots[i]) dots[i].classList.add('active'); }
+slides.forEach((s, i) => {
+  ScrollTrigger.create({ trigger:s, start:'top center', end:'bottom center', onEnter:()=>setDot(i), onEnterBack:()=>setDot(i) });
+});
+setDot(0);
+
+// Refresh ScrollTrigger after scroll-snap settles
+var snapTimer;
+window.addEventListener('scroll', function() {
+  clearTimeout(snapTimer);
+  snapTimer = setTimeout(function() { ScrollTrigger.refresh(); }, 150);
+}, {passive:true});
+
+// Per-slide animations
+slides.forEach((slide) => {
+  if (slide.id === 's1') return; // Hero animates on load, not scroll
+  const els = slide.querySelectorAll('.anim');
+  const id = slide.id;
+
+  // Group elements: title+subtitle+line first, then content
+  const titleEls = [];
+  const contentEls = [];
+  els.forEach(el => {
+    const cl = el.classList;
+    if (cl.contains('slide-title') || cl.contains('slide-subtitle') || cl.contains('green-line') || cl.contains('gold-line')) {
+      titleEls.push(el);
+    } else {
+      contentEls.push(el);
+    }
+  });
+
+  // ALL slides use IntersectionObserver — ScrollTrigger doesn't work with scroll-snap
+  // Set up per-slide animation queue
+  const queueKey = '__q_' + id;
+  const firedKey = '__f_' + id;
+  if (!window[queueKey]) { window[queueKey] = []; window[firedKey] = false; }
+
+  // Queue title animations
+  titleEls.forEach(function(el, i) {
+    gsap.set(el, {opacity:0, y:25});
+    window[queueKey].push(function() {
+      gsap.to(el, {opacity:1, y:0, duration:0.5, delay:0.1 + i*0.08, ease:'power2.out'});
+    });
+  });
+
+  // Content: slide-specific timing
+  for (let i = 0; i < contentEls.length; i++) {
+    const el = contentEls[i];
+    let delay = 0.3 + i * 0.1;  // start after title group
+    let from = {opacity:0, y:30};
+    let to = {opacity:1, y:0, duration:0.55, ease:'power2.out'};
+
+    // Slide 3 (and 3b on mobile): ALL animations queued via IntersectionObserver
+    if(id === 's3' || id === 's3b') {
+      const group = el.dataset.animGroup;
+      const isMob = window.matchMedia('(max-width:768px)').matches;
+
+      // For s3b on mobile, use separate IO
+      if (id === 's3b') {
+        if (!window.__s3bQueue) { window.__s3bQueue = []; window.__s3bFired = false; }
+        gsap.set(el, {opacity:0, y:30});
+        (function(animEl, animGroup) {
+          var d = 0.3;
+          window.__s3bQueue.push(function() {
+            if (animGroup === 's3-cari-hub') {
+              gsap.set(animEl, {opacity:1, y:0});
+              gsap.fromTo(animEl, {scale:0.3, filter:'blur(4px)'}, {scale:1, filter:'blur(0px)', duration:0.8, ease:'elastic.out(1.2, 0.4)', delay:0.3,
+                onStart: function() {
+                  var sec = document.getElementById('s3b');
+                  gsap.to(sec, {x:4, duration:0.05, yoyo:true, repeat:3, ease:'power1.inOut', onComplete:function(){gsap.set(sec,{x:0});}});
+                }
+              });
+            } else if (animGroup === 's3-track') {
+              gsap.to(animEl, {opacity:1, y:0, scale:1, duration:1.0, ease:'power2.out', delay:0.1});
+            } else if (animGroup === 's3-spoke-r') {
+              var spokes = Array.from(document.querySelectorAll('#s3b [data-anim-group="s3-spoke-r"]'));
+              var idx = spokes.indexOf(animEl);
+              gsap.to(animEl, {opacity:1, y:0, scale:1, duration:0.8, ease:'back.out(1.3)', delay:2.5+idx*0.8,
+                onComplete: idx===spokes.length-1 ? function(){document.querySelectorAll('.s3-orbiter').forEach(function(n){n.style.animationPlayState='running';});} : null
+              });
+            } else if (animEl.classList.contains('s3-context-solution')) {
+              gsap.to(animEl, {opacity:1, y:0, duration:0.55, ease:'power2.out', delay:0.1});
+            } else {
+              gsap.to(animEl, {opacity:1, y:0, duration:0.55, ease:'power2.out', delay:d});
+            }
+          });
+        })(el, group);
+        // Set up s3b IO once
+        if (!window.__s3bObsSetup) {
+          window.__s3bObsSetup = true;
+          setTimeout(function() {
+            var s3bEl = document.getElementById('s3b');
+            if (s3bEl) {
+              var obs = new IntersectionObserver(function(ents) {
+                if (ents[0].isIntersecting && ents[0].intersectionRatio >= 0.5 && !window.__s3bFired) {
+                  window.__s3bFired = true; obs.disconnect();
+                  setTimeout(function() { window.__s3bQueue.forEach(function(fn){fn();}); }, 400);
+                }
+              }, {threshold:[0.5]});
+              obs.observe(s3bEl);
+            }
+          }, 500);
+        }
+        continue; // skip default gsap.fromTo below
+      }
+
+      // For s3 on desktop/mobile: queue everything via __s3Queue
+      gsap.set(el, {opacity:0});
+      if (group === 's3-spoke-l' || group === 's3-spoke-r' || group === 's3-track' || group === 's3-cari-hub') {
+        gsap.set(el, {scale:0.3});
+      }
+
+      (function(animEl, animGroup) {
+        if (animGroup === 's3-spoke-l') {
+          var spokes = Array.from(slide.querySelectorAll('[data-anim-group="s3-spoke-l"]'));
+          var idx = spokes.indexOf(animEl);
+          window['__q_s3'].push(function() {
+            gsap.to(animEl, {opacity:1, scale:1, duration:1.0, ease:'back.out(1.3)', delay:1.0 + idx*1.0});
+          });
+        } else if (animGroup === 's3-cari-hub') {
+          var solDelay = isMob ? 0 : 7.5;
+          window['__q_s3'].push(function() {
+            gsap.to(animEl, {opacity:1, duration:0.01, delay:solDelay + 0.3, onComplete: function() {
+              if (!isMob) {
+                var hub = animEl;
+                var tl = gsap.timeline();
+                hub.style.zIndex = '9999'; hub.style.position = 'fixed'; hub.style.top = '50%'; hub.style.left = '50%';
+                tl.set(hub, {scale:0.3, x:-700, y:-400, rotation:-20, filter:'blur(6px)'})
+                  .to(hub, {x:400, y:100, rotation:10, scale:0.5, filter:'blur(3px)', duration:0.7, ease:'power2.inOut'})
+                  .to(hub, {x:-200, y:-150, rotation:-8, scale:0.7, filter:'blur(1px)', duration:0.6, ease:'power2.inOut'})
+                  .to(hub, {x:80, y:50, rotation:3, scale:0.9, filter:'blur(0px)', duration:0.5, ease:'power2.in'})
+                  .to(hub, {x:0, y:0, rotation:0, scale:1.2, duration:0.12, ease:'power4.in', onComplete:function(){
+                    hub.style.position='absolute'; hub.style.zIndex='2'; hub.style.top='50%'; hub.style.left='50%'; gsap.set(hub,{x:0,y:0});
+                  }})
+                  .to(hub, {scale:1, duration:0.6, ease:'elastic.out(1.2, 0.3)', onStart:function(){
+                    var sec = document.getElementById('s3');
+                    gsap.to(sec, {x:6, duration:0.05, yoyo:true, repeat:5, ease:'power1.inOut', onComplete:function(){gsap.set(sec,{x:0});}});
+                  }});
+              }
+            }});
+          });
+        } else if (animGroup === 's3-track') {
+          var trackDelay = isMob ? 0.1 : 7.6;
+          window['__q_s3'].push(function() {
+            gsap.to(animEl, {opacity:1, scale:1, duration:1.0, ease:'power2.out', delay:trackDelay});
+          });
+        } else if (animGroup === 's3-spoke-r') {
+          var spokes = Array.from(slide.querySelectorAll('[data-anim-group="s3-spoke-r"]'));
+          var idx = spokes.indexOf(animEl);
+          var srDelay = isMob ? (2.5+idx*0.8) : (9.5+idx*0.8);
+          var isLast = idx === spokes.length - 1;
+          window['__q_s3'].push(function() {
+            gsap.to(animEl, {opacity:1, scale:1, duration:0.8, ease:'back.out(1.3)', delay:srDelay,
+              onComplete: isLast ? function(){document.querySelectorAll('.s3-orbiter').forEach(function(n){n.style.animationPlayState='running';});} : null
+            });
+          });
+        } else if (animEl.classList.contains('s3-context-problem')) {
+          window['__q_s3'].push(function() {
+            gsap.to(animEl, {opacity:1, y:0, duration:0.55, ease:'power2.out', delay:0.3});
+          });
+        } else if (animEl.classList.contains('s3-context-solution')) {
+          var ctxDelay = isMob ? 0.3 : 7.3;
+          window['__q_s3'].push(function() {
+            gsap.to(animEl, {opacity:1, y:0, duration:0.55, ease:'power2.out', delay:ctxDelay});
+          });
+        } else {
+          window['__q_s3'].push(function() {
+            gsap.to(animEl, {opacity:1, y:0, duration:0.55, ease:'power2.out', delay:0.3});
+          });
+        }
+      })(el, group);
+      continue; // skip default gsap.fromTo — IO handles everything
+    }
+
+    // Slide 4: "What the Data Unlocks" cards come in one at a time
+    if(id === 's4' && el.dataset.animGroup === 's4-unlock') {
+      const unlocks = Array.from(slide.querySelectorAll('[data-anim-group="s4-unlock"]'));
+      const idx = unlocks.indexOf(el);
+      delay = 0.8 + idx * 0.4;
+      from = {opacity:0, x:30, y:0};
+      to = {opacity:1, x:0, y:0, duration:0.45, ease:'power2.out'};
+    }
+
+    // Slide 5: SOM/SAM/TAM circles come in one at a time (smallest first)
+    if(id === 's5') {
+      if(el.querySelector('.circle')) {
+        const circleWrappers = Array.from(slide.querySelectorAll('.anim')).filter(e => e.querySelector('.circle'));
+        const idx = circleWrappers.indexOf(el);
+        // SOM (idx=0) first, then SAM (idx=1), then TAM (idx=2)
+        delay = 0.8 + idx * 0.6;
+        from = {opacity:0, scale:0.5};
+        to = {opacity:1, scale:1, duration:0.6, ease:'back.out(1.4)'};
+      }
+    }
+
+    // Slide 7: images first, then text groups
+    if(id === 's7') {
+      const group = el.dataset.animGroup;
+      if(group === 'images') delay = 0.3;
+      else if(group === 'charge-card') delay = 0.5;
+      else if(group === 'rewards-os') delay = 1.8;
+      else delay = 0.3 + i * 0.15;
+    }
+
+    // Slide 8: dashboard → chef bubbles pop in → modules slide in
+    if(id === 's8') {
+      const group = el.dataset.animGroup;
+      if(group === 's8-dashboard') { delay = 0.3; }
+      else if(group === 's8-chef-1') { delay = 0.8; from = {opacity:0, scale:0.8}; to = {opacity:1, scale:1, duration:0.4, ease:'back.out(1.5)'}; }
+      else if(group === 's8-chef-2') { delay = 1.3; from = {opacity:0, scale:0.8}; to = {opacity:1, scale:1, duration:0.4, ease:'back.out(1.5)'}; }
+      else if(group === 's8-chef-3') { delay = 1.8; from = {opacity:0, scale:0.8}; to = {opacity:1, scale:1, duration:0.4, ease:'back.out(1.5)'}; }
+      else if(group === 's8-module') {
+        const modules = Array.from(slide.querySelectorAll('[data-anim-group="s8-module"]'));
+        const idx = modules.indexOf(el);
+        delay = 2.3 + idx * 0.3;
+        from = {opacity:0, x:30}; to = {opacity:1, x:0, duration:0.45, ease:'power2.out'};
+      } else delay = 0.3 + i * 0.15;
+    }
+
+    // Slide 2: columns animate sequentially, then dashboards
+    if(id === 's2') {
+      const group = el.dataset.animGroup;
+      if(group === 's2-col') {
+        const cols = Array.from(slide.querySelectorAll('[data-anim-group="s2-col"]'));
+        const idx = cols.indexOf(el);
+        delay = 0.4 + idx * 0.45;
+      } else if(group === 's2-dashboards') {
+        delay = 1.8;
+      } else delay = 0.3 + i * 0.1;
+    }
+
+    // Slide 6: ring + card pairs build bottom-up, stacking
+    // Bottom: Infrastructure ring + Payments card → Middle: Intelligence + Optimization → Top: Marketplace + Growth & Ads
+    if(id === 's6') {
+      const group = el.dataset.animGroup;
+      if(group === 's6-rings') delay = 0.3;
+      // 1st: Infrastructure (bottom ring) + Payments (bottom card)
+      else if(group === 's6-ring-1') { delay = 0.5; from = {opacity:0, y:50}; to = {opacity:1, y:0, duration:0.6, ease:'back.out(1.2)'}; }
+      else if(group === 's6-card-3') { delay = 0.5; from = {opacity:0, x:30}; to = {opacity:1, x:0, duration:0.5, ease:'power2.out'}; }
+      // 2nd: Intelligence (middle ring) + Optimization (middle card)
+      else if(group === 's6-ring-2') { delay = 1.2; from = {opacity:0, y:40}; to = {opacity:1, y:0, duration:0.6, ease:'back.out(1.2)'}; }
+      else if(group === 's6-card-2') { delay = 1.2; from = {opacity:0, x:30}; to = {opacity:1, x:0, duration:0.5, ease:'power2.out'}; }
+      // 3rd: Marketplace (top ring) + Growth & Ads (top card)
+      else if(group === 's6-ring-3') { delay = 1.9; from = {opacity:0, y:30}; to = {opacity:1, y:0, duration:0.6, ease:'back.out(1.2)'}; }
+      else if(group === 's6-card-1') { delay = 1.9; from = {opacity:0, x:30}; to = {opacity:1, x:0, duration:0.5, ease:'power2.out'}; }
+      else delay = 0.3 + i * 0.1;
+    }
+
+    // Slide 12: bounce logos with stagger
+    if(id === 's12') {
+      const group = el.dataset.animGroup;
+      if(group === 's12-logo') {
+        const logos = Array.from(slide.querySelectorAll('[data-anim-group="s12-logo"]'));
+        const idx = logos.indexOf(el);
+        from = {opacity:0, scale:0.3}; to = {opacity:1, scale:1, duration:0.5, ease:'back.out(1.7)'};
+        delay = 0.5 + idx * 0.15;
+      } else {
+        delay = 0.3 + i * 0.1;
+      }
+    }
+
+    // Slide 10: animated flywheel sequence
+    if(id === 's10') {
+      const group = el.dataset.animGroup;
+      if(group === 's10-center') {
+        delay = 0.5;
+        from = {opacity:0, scale:0.2}; to = {opacity:1, scale:1, duration:0.8, ease:'elastic.out(1, 0.5)'};
+      } else if(group === 's10-push') {
+        delay = 1.3;
+        from = {opacity:0, y:-80, scale:0.8}; to = {opacity:1, y:0, scale:1, duration:0.7, ease:'back.out(1.5)'};
+      } else if(group === 's10-pull') {
+        delay = 2.0;
+        from = {opacity:0, y:80, scale:0.8}; to = {opacity:1, y:0, scale:1, duration:0.7, ease:'back.out(1.5)'};
+      } else if(group === 's10-track') {
+        delay = 2.7;
+        from = {opacity:0}; to = {opacity:1, duration:1.0, ease:'power2.inOut',
+          onStart: function() {
+            // Draw the arrows with stroke-dashoffset animation
+            const arrowR = document.querySelector('.s10-arrow-r');
+            const arrowL = document.querySelector('.s10-arrow-l');
+            if(arrowR) { const len = arrowR.getTotalLength(); arrowR.style.strokeDasharray = len; arrowR.style.strokeDashoffset = len; arrowR.style.animation = 'none'; gsap.to(arrowR, {strokeDashoffset:0, duration:1.5, delay:0.3, ease:'power2.inOut', onComplete:function(){ arrowR.style.strokeDasharray='8 5'; arrowR.style.strokeDashoffset='0'; arrowR.style.animation='dashFlow 2s linear infinite'; }}); }
+            if(arrowL) { const len = arrowL.getTotalLength(); arrowL.style.strokeDasharray = len; arrowL.style.strokeDashoffset = len; arrowL.style.animation = 'none'; gsap.to(arrowL, {strokeDashoffset:0, duration:1.5, delay:0.8, ease:'power2.inOut', onComplete:function(){ arrowL.style.strokeDasharray='8 5'; arrowL.style.strokeDashoffset='0'; arrowL.style.animation='dashFlow 2s linear infinite'; }}); }
+            // Show traveling dots after arrows are drawn
+            setTimeout(function() {
+              document.querySelectorAll('.s10-dot').forEach(function(d){ d.setAttribute('opacity','0.8'); });
+            }, 2500);
+            // Push box subtle push-down pulse
+            const pushBox = slide.querySelector('[data-anim-group="s10-push"]');
+            const pullBox = slide.querySelector('[data-anim-group="s10-pull"]');
+            if(pushBox) gsap.to(pushBox, {y:4, duration:1.2, repeat:-1, yoyo:true, ease:'sine.inOut', delay:2.5});
+            if(pullBox) gsap.to(pullBox, {y:-4, duration:1.2, repeat:-1, yoyo:true, ease:'sine.inOut', delay:3.1});
+          }
+        };
+      } else delay = 0.3 + i * 0.1;
+    }
+
+    // Slide 13: bars stagger in after title
+    if(id === 's13') {
+      const group = el.dataset.animGroup;
+      if(group === 'bars13') {
+        const bars = Array.from(slide.querySelectorAll('[data-anim-group="bars13"]'));
+        const idx = bars.indexOf(el);
+        delay = 0.4 + idx * 0.2;
+        from = {opacity:0, x:-20}; to = {opacity:1, x:0, duration:0.5, ease:'power2.out'};
+      } else delay = 0.3 + i * 0.1;
+    }
+
+    // Slide 16: team cards scale in
+    if(id === 's16' && el.querySelector('img')) {
+      from = {opacity:0, scale:0.85}; to = {opacity:1, scale:1, duration:0.5, ease:'power2.out'};
+      delay = 0.3 + i * 0.1;
+    }
+
+    // Slide 20: images pop up
+    if(id === 's20' && el.querySelector('img.slide-img')) {
+      from = {opacity:0, scale:0.8}; to = {opacity:1, scale:1, duration:0.5, ease:'power2.out'};
+    }
+
+    // Queue content animation (no ScrollTrigger — IO handles trigger)
+    const contentDelay = delay + 0.8; // 0.8s gap after titles
+    gsap.set(el, from);
+    (function(animEl, animFrom, animTo, animDelay) {
+      window[queueKey].push(function() {
+        animTo.delay = animDelay;
+        gsap.to(animEl, animTo);
+      });
+    })(el, from, to, contentDelay);
+  }
+
+  // Set up IntersectionObserver for this slide (once per slide)
+  const obsKey = '__obs_' + id;
+  if (!window[obsKey]) {
+    window[obsKey] = true;
+    (function(slideEl, qk, fk) {
+      setTimeout(function() {
+        var obs = new IntersectionObserver(function(entries) {
+          if (entries[0].isIntersecting && entries[0].intersectionRatio >= 0.5 && !window[fk]) {
+            window[fk] = true;
+            obs.disconnect();
+            // 300ms delay to let snap fully settle
+            setTimeout(function() {
+              window[qk].forEach(function(fn) { fn(); });
+            }, 300);
+          }
+        }, {threshold: [0.5]});
+        obs.observe(slideEl);
+      }, 300);
+    })(slide, queueKey, firedKey);
+  }
+});
+
+// Hero (s1): handled via CSS @keyframes heroFadeIn — no GSAP needed
+</script>
+<script src="chat.js"></script>
+</body>
+</html>
