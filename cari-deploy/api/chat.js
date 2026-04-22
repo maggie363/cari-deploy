@@ -11,8 +11,17 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Always set CORS and JSON content type for responses
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
   try {
-    const { messages, system } = req.body;
+    const { messages, system } = req.body || {};
+
+    // Health check: if no messages, return OK (used by frontend to detect backend)
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      return res.status(200).json({ status: 'ok', backend: true });
+    }
+
     const apiKey = process.env.ANTHROPIC_API_KEY;
 
     if (!apiKey) {
@@ -37,14 +46,14 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const errText = await response.text();
-      return res.status(response.status).send(errText);
+      res.setHeader('Content-Type', 'application/json');
+      return res.status(response.status).json({ error: errText });
     }
 
     // Stream the response back
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
-    res.setHeader('Access-Control-Allow-Origin', '*');
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
