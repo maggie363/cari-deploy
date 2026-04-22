@@ -1,0 +1,442 @@
+/* ── Cari AI Chat ── */
+
+/* Floating button group */
+.cari-chat-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 10px;
+}
+
+.cari-chat-fab-main {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e8e8e8 0%, #c0c0c0 25%, #a8a8a8 50%, #d4d4d4 75%, #b0b0b0 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 0 2px rgba(255,255,255,0.3), inset 0 1px 3px rgba(255,255,255,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  padding: 0;
+}
+.cari-chat-fab-main img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.cari-chat-fab-main:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.25), 0 0 0 2px rgba(255,255,255,0.4), inset 0 1px 3px rgba(255,255,255,0.5);
+}
+
+/* Pulse ring */
+.cari-chat-fab-main::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(180,180,180,0.6);
+  animation: cariPulse 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes cariPulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
+/* Tooltip */
+.cari-chat-fab-main .cari-fab-tooltip {
+  position: absolute;
+  right: 68px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--dark, #1C1C1C);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.cari-chat-fab-main:hover .cari-fab-tooltip {
+  opacity: 1;
+}
+
+/* Provider icons */
+.cari-chat-providers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.cari-chat-fab:hover .cari-chat-providers,
+.cari-chat-fab.show-providers .cari-chat-providers {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.cari-provider-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+  font-size: 16px;
+  background: #fff;
+}
+.cari-provider-btn:hover { transform: scale(1.15); }
+.cari-provider-btn.claude { background: #D97757; color: #fff; }
+.cari-provider-btn.chatgpt { background: #10A37F; color: #fff; }
+.cari-provider-btn.gemini { background: #4285F4; color: #fff; }
+
+/* ── Chat Panel ── */
+.cari-chat-panel {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 400px;
+  height: 520px;
+  background: var(--cream, #FAF9F5);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease-out, opacity 0.25s ease-out;
+}
+.cari-chat-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Header */
+.cari-chat-header {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a8a8a8 40%, #b8b8b8 60%, #d0d0d0 100%);
+  color: #fff;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'DM Sans', sans-serif;
+  flex-shrink: 0;
+}
+.cari-chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.cari-chat-header-left img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  padding: 2px;
+}
+.cari-chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cari-chat-header-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: background 0.15s;
+}
+.cari-chat-header-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Messages area */
+.cari-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cari-chat-messages::-webkit-scrollbar { width: 5px; }
+.cari-chat-messages::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
+
+/* Message bubbles */
+.cari-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 88%;
+  animation: cariFadeIn 0.25s ease-out;
+}
+@keyframes cariFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cari-msg.ai { align-self: flex-start; }
+.cari-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+
+.cari-msg-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.cari-msg.user .cari-msg-avatar { display: none; }
+
+.cari-msg-bubble {
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+.cari-msg.ai .cari-msg-bubble {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: var(--dark, #1C1C1C);
+}
+.cari-msg.user .cari-msg-bubble {
+  background: var(--green, #4A7C59);
+  color: #fff;
+}
+
+/* Suggested chips */
+.cari-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.cari-cat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cari-cat-btn {
+  background: var(--green, #4A7C59);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid var(--green, #4A7C59);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+.cari-cat-btn:hover {
+  opacity: 0.85;
+}
+.cari-cat-btn.active {
+  background: #fff;
+  color: var(--green, #4A7C59);
+}
+.cari-q-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  animation: cariFadeIn 0.2s ease-out;
+}
+@keyframes cariFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.cari-chip {
+  background: #fff;
+  border: 1px solid var(--green, #4A7C59);
+  color: var(--green, #4A7C59);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: normal;
+  text-align: left;
+}
+.cari-chip:hover {
+  background: var(--green, #4A7C59);
+  color: #fff;
+}
+
+/* Typing indicator */
+.cari-typing { display: flex; gap: 4px; padding: 4px 0; }
+.cari-typing span {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #aaa;
+  animation: cariBounce 1.2s ease-in-out infinite;
+}
+.cari-typing span:nth-child(2) { animation-delay: 0.15s; }
+.cari-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cariBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+/* Input area */
+.cari-chat-input-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  background: #fff;
+  flex-shrink: 0;
+}
+.cari-chat-input {
+  flex: 1;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+  background: var(--cream, #FAF9F5);
+  transition: border-color 0.15s;
+}
+.cari-chat-input:focus { border-color: var(--green, #4A7C59); }
+.cari-chat-input::placeholder { color: #aaa; }
+.cari-chat-send {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--green, #4A7C59);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.cari-chat-send:hover { background: #3d6a4c; }
+
+/* ── API Key Modal ── */
+.cari-key-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 10002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.cari-key-modal-overlay.open { opacity: 1; pointer-events: auto; }
+.cari-key-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  width: 360px;
+  max-width: 90vw;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+}
+.cari-key-modal h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--dark, #1C1C1C);
+}
+.cari-key-modal p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.cari-key-modal input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  margin-bottom: 14px;
+  outline: none;
+}
+.cari-key-modal input:focus { border-color: var(--green, #4A7C59); }
+.cari-key-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.cari-key-modal-actions button {
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+}
+.cari-key-modal-actions .cari-key-cancel {
+  background: #eee;
+  color: #333;
+}
+.cari-key-modal-actions .cari-key-save {
+  background: var(--green, #4A7C59);
+  color: #fff;
+}
+.cari-key-modal-actions .cari-key-save:hover { background: #3d6a4c; }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .cari-chat-fab { bottom: 16px; right: 16px; }
+  .cari-chat-fab-main { width: 48px; height: 48px; }
+  .cari-chat-fab-main img { width: 28px; height: 28px; }
+
+  .cari-chat-panel {
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .cari-chat-fab-main .cari-fab-tooltip { display: none; }
+}
